@@ -21,7 +21,7 @@ public class Ventas {
 		this.vuelos = vuelos;
 		this.aerolinea = aerolinea;
 		this.fecha_hora_de_venta = fecha_hora_de_venta;
-		Forma_de_pago = forma_de_pago;
+		this.Forma_de_pago = forma_de_pago;
 	}
 
 	public List<Vuelos> getVuelos() {
@@ -53,7 +53,7 @@ public class Ventas {
 	}
 
 	public void setForma_de_pago(String forma_de_pago) {
-		Forma_de_pago = forma_de_pago;
+		this.Forma_de_pago = forma_de_pago;
 	}
 
 	public List<Clientes> getClientes() {
