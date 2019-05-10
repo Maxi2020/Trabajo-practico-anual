@@ -3,6 +3,7 @@ package edu.usal.negocio;
 import java.time.LocalDate;
 
 public class Telefonos extends Clientes {
+	//objetos en clientes sacar extends 
 private String numeroPersonal, numeroCelular, numeroLaboral;
 public Telefonos() {}
 

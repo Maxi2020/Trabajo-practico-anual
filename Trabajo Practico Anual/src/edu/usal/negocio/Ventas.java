@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ventas {
-
+//todas las listas son objetos
 	private List<Clientes> clientes = new ArrayList();
 	private List<Vuelos> vuelos = new ArrayList();
 	private List<ListaAerolinea> aerolinea  = new ArrayList();

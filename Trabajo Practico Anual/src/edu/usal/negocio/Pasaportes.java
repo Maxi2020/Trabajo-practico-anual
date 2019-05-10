@@ -3,6 +3,7 @@ package edu.usal.negocio;
 import java.time.LocalDate;
 
 public class Pasaportes extends Clientes {
+	//hacer objeto pasaporte de cliente sacar extemds y pais emision objeto.
 private String numeroPasaporte, autoridadEmision, paisEmision;
 private LocalDate fechaEmision, fechaVencimiento;
 public Pasaportes() {}

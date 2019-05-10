@@ -3,6 +3,7 @@ package edu.usal.negocio;
 import java.time.LocalDate;
 
 public class PasajerosFrecuentes extends Clientes {
+	//objeto aerolinea.
 private String alianza, aerolinea, numero, categoria;
 public PasajerosFrecuentes() {}
 

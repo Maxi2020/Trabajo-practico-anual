@@ -3,6 +3,7 @@ package edu.usal.negocio;
 import java.time.LocalDate;
 
 public class Direcciones extends Clientes{
+	//pais como objeto y provincia tambien
 private String calle, altura, ciudad, provincia, pais, codigoPostal;
 public Direcciones () {}
 

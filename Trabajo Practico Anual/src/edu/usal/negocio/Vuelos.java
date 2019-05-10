@@ -3,7 +3,7 @@ package edu.usal.negocio;
 import java.time.LocalDateTime;
 
 public abstract class Vuelos {
-	
+	//sacar aerolinea, cambiar a tiempo de vuelo a time
 	
 	private String aerolinea ,numeroVuelo, tiempoVuelo;
 	private int cantidadAsientos;

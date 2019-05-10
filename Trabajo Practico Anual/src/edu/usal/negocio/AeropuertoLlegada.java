@@ -1,7 +1,7 @@
 package edu.usal.negocio;
 
 public class AeropuertoLlegada extends Vuelos{
-
+//provincia y pais objeto sacar extend objeto de vuelos
 	private String identificacionAeropuerto, Ciudad, Provincia, Pais;
 	
 	public AeropuertoLlegada() {}

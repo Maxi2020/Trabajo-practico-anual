@@ -1,7 +1,7 @@
 package edu.usal.negocio;
 
 public class AeropuertoSalida extends Vuelos{
-
+//idem llegadada
 	private String identificacionAeropuerto, Ciudad, Provincia, Pais;
 
 	public AeropuertoSalida() {}
