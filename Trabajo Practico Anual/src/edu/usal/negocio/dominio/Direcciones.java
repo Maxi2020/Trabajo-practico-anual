@@ -1,8 +1,9 @@
 package edu.usal.negocio.dominio;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Direcciones {
+public class Direcciones implements Serializable {
 private String calle, altura, ciudad, codigoPostal;
 private Paises paises;
 private Provincias provincias;
@@ -17,6 +18,7 @@ public Direcciones(String calle, String altura, String ciudad, String codigoPost
 	this.paises = paises;
 	this.provincias = provincias;
 }
+
 public String getCalle() {
 	return calle;
 }
@@ -53,5 +55,6 @@ public Provincias getProvincias() {
 public void setProvincias(Provincias provincias) {
 	this.provincias = provincias;
 }
+
 
 }

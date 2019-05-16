@@ -6,14 +6,14 @@ import java.time.LocalDate;
 public  class Clientes implements Serializable {
 private String nombre, apellido, dni, cuit, correo;
 private LocalDate fechaNacimiento;
-private int id;
+private int idCliente;
 private Pasaportes pasaporte;
 private Telefonos telefono;
 private PasajerosFrecuentes pasajerofrecuente;
 private Direcciones direccion;
 public Clientes () {}
 public Clientes(String nombre, String apellido, String dni, String cuit, String correo, LocalDate fechaNacimiento,
-		int id, Pasaportes pasaporte, Telefonos telefono, PasajerosFrecuentes pasajerofrecuente,
+		int idCliente, Pasaportes pasaporte, Telefonos telefono, PasajerosFrecuentes pasajerofrecuente,
 		Direcciones direccion) {
 	super();
 	this.nombre = nombre;
@@ -22,7 +22,7 @@ public Clientes(String nombre, String apellido, String dni, String cuit, String 
 	this.cuit = cuit;
 	this.correo = correo;
 	this.fechaNacimiento = fechaNacimiento;
-	this.id = id;
+	this.idCliente = idCliente;
 	this.pasaporte = pasaporte;
 	this.telefono = telefono;
 	this.pasajerofrecuente = pasajerofrecuente;
@@ -64,11 +64,11 @@ public LocalDate getFechaNacimiento() {
 public void setFechaNacimiento(LocalDate fechaNacimiento) {
 	this.fechaNacimiento = fechaNacimiento;
 }
-public int getId() {
-	return id;
+public int getIdCliente() {
+	return idCliente;
 }
-public void setId(int id) {
-	this.id = id;
+public void setIdCliente(int idCliente) {
+	this.idCliente = idCliente;
 }
 public Pasaportes getPasaporte() {
 	return pasaporte;

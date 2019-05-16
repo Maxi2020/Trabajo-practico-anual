@@ -1,12 +1,13 @@
 package edu.usal.negocio.dominio;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PasajerosFrecuentes {
+public class PasajerosFrecuentes implements Serializable {
 private String alianza, numero, categoria;
-private Aerolinea aerolinea;
+private Aerolineas aerolinea;
 public PasajerosFrecuentes() {}
-public PasajerosFrecuentes(String alianza, String numero, String categoria, Aerolinea aerolinea) {
+public PasajerosFrecuentes(String alianza, String numero, String categoria, Aerolineas aerolinea) {
 	super();
 	this.alianza = alianza;
 	this.numero = numero;
@@ -31,11 +32,12 @@ public String getCategoria() {
 public void setCategoria(String categoria) {
 	this.categoria = categoria;
 }
-public Aerolinea getAerolinea() {
+public Aerolineas getAerolinea() {
 	return aerolinea;
 }
-public void setAerolinea(Aerolinea aerolinea) {
+public void setAerolinea(Aerolineas aerolinea) {
 	this.aerolinea = aerolinea;
 }
+
 
 }

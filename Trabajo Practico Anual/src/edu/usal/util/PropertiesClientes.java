@@ -1,7 +1,7 @@
 package edu.usal.util;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -10,12 +10,13 @@ private static Properties properties;
 public static String getPathClientes () throws IOException, FileNotFoundException {
 	try {
 		properties = new Properties();
-		properties.load(new FileReader("config.properties"));
-		
+		FileInputStream fileInput= new FileInputStream("Archivo.properties");
+		properties.load(fileInput);
+        fileInput.close();
 	}
 	catch (IOException e) {
 	e.printStackTrace();	
 	}
-	return properties.getProperty("patchCliente");
+	return properties.getProperty("pathCliente");
 }
 }

@@ -1,8 +1,9 @@
 package edu.usal.negocio.dominio;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Telefonos  {
+public class Telefonos implements Serializable  {
 private String numeroPersonal, numeroCelular, numeroLaboral;
 public Telefonos() {}
 public Telefonos(String numeroPersonal, String numeroCelular, String numeroLaboral) {

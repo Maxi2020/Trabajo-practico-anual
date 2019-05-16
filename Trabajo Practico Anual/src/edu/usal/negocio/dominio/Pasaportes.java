@@ -1,8 +1,9 @@
 package edu.usal.negocio.dominio;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Pasaportes {
+public class Pasaportes implements Serializable {
 	
 private String numeroPasaporte, autoridadEmision;
 private LocalDate fechaEmision, fechaVencimiento;
