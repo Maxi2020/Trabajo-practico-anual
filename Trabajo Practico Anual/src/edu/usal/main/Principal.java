@@ -21,64 +21,62 @@ public static void main(String[] args) throws FileNotFoundException, IOException
 ClienteDAO ImpDAO = ClienteFactory.getImplementacion("Serializable");	
 
 Clientes cliente = new Clientes();
-Pasaportes pasaporte = new Pasaportes();
-Paises paisEmision=new Paises();
-Telefonos telefono=new Telefonos();
-Direcciones direccion= new Direcciones();
-Paises paises= new Paises();
-Provincias provincia= new Provincias();
-PasajerosFrecuentes pasajero= new PasajerosFrecuentes();
-Aerolineas aerolinea = new Aerolineas();
+Pasaportes pasaporte1 = new Pasaportes();
+Paises paisEmision1=new Paises();
+Telefonos telefono1=new Telefonos();
+Direcciones direccion1= new Direcciones();
+Paises paises1= new Paises();
+Provincias provincia1= new Provincias();
+PasajerosFrecuentes pasajero1= new PasajerosFrecuentes();
+Aerolineas aerolinea1 = new Aerolineas();
 
-cliente.setNombre("Agustin");
+cliente.setNombre("agus1");
 cliente.setApellido("Cammarota");
 cliente.setCorreo("sadadsadd");
 cliente.setCuit("sallll");
 cliente.setDni("234245");
-cliente.setIdCliente(1);
+cliente.setIdCliente(2);
 cliente.setFechaNacimiento(LocalDate.now());
-pasaporte.setAutoridadEmision("sdsad");
-pasaporte.setFechaEmision(LocalDate.now());
-pasaporte.setFechaVencimiento(LocalDate.now());
-pasaporte.setNumeroPasaporte("23232");
-paisEmision.setPais("argentina");
-pasaporte.setPaisEmision(paisEmision);
-cliente.setPasaporte(pasaporte);
-telefono.setNumeroCelular("2321111");
-telefono.setNumeroLaboral("232323211");
-telefono.setNumeroPersonal("124244224");
-cliente.setTelefono(telefono);
-direccion.setAltura("2111");
-direccion.setCalle("libertador");
-direccion.setCiudad("pilar");
-direccion.setCodigoPostal("1223");
-paises.setPais("Argentina");
+pasaporte1.setAutoridadEmision("sdsad");
+pasaporte1.setFechaEmision(LocalDate.now());
+pasaporte1.setFechaVencimiento(LocalDate.now());
+pasaporte1.setNumeroPasaporte("23232");
+paisEmision1.setPais("argentina");
+pasaporte1.setPaisEmision(paisEmision1);
+cliente.setPasaporte(pasaporte1);
+telefono1.setNumeroCelular("2321111");
+telefono1.setNumeroLaboral("232323211");
+telefono1.setNumeroPersonal("124244224");
+cliente.setTelefono(telefono1);
+direccion1.setAltura("2111");
+direccion1.setCalle("libertador");
+direccion1.setCiudad("pilar");
+direccion1.setCodigoPostal("1223");
+paises1.setPais("Argentina");
 
 
-direccion.setPaises(paises);
-provincia.setProvincias("Buenos Aires");
-direccion.setProvincias(provincia);
-cliente.setDireccion(direccion);
-pasajero.setAlianza("american");
-pasajero.setCategoria("economica");
-pasajero.setNumero("2223");
-aerolinea.setAerolinea("american ss");
-pasajero.setAerolinea(aerolinea);
-cliente.setPasajerofrecuente(pasajero);
-
+direccion1.setPaises(paises1);
+provincia1.setProvincias("Buenos Aires");
+direccion1.setProvincias(provincia1);
+cliente.setDireccion(direccion1);
+pasajero1.setAlianza("american");
+pasajero1.setCategoria("economica");
+pasajero1.setNumero("2223");
+aerolinea1.setAerolinea("american ss");
+pasajero1.setAerolinea(aerolinea1);
+cliente.setPasajerofrecuente(pasajero1);
+try {
+	ImpDAO.addCliente(cliente);
+	cliente.setApellido("raul");
+	cliente.setIdCliente(23);
+	ImpDAO.addCliente(cliente);
+}
+catch(Exception e){
+	e.printStackTrace();
+}
 	
-	try {
-		
-		ImpDAO.addCliente(cliente);
-		List <Clientes> listado= ImpDAO.getAllClientes();
-		for(Clientes clientes : listado )
-		{
-			System.out.println(cliente.getApellido());
-		}
-	}
-	catch (IOException e) {
-		e.printStackTrace();
-	}
+	
+	ImpDAO.queryCliente(cliente);
 
 }
 }
