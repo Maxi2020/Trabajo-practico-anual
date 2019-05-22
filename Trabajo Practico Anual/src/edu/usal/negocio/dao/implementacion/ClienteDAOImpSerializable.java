@@ -21,17 +21,25 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
  
 	@Override
 	public boolean addCliente(Clientes cliente) throws FileNotFoundException, IOException {
-	List<Clientes> listado = this.getAllClientes();
-	listado.add(cliente);
-	this.saveAllClientes(listado);
-	return true;
+		List<Clientes> listado = this.getAllClientes();
+		listado.add(cliente);
+		this.saveAllClientes(listado);
+		return true;
 	
 	}
 
 	@Override
-	public void updateCliente(Clientes cliente) {
-		// TODO Auto-generated method stub
-		
+	public boolean updateCliente(Clientes cliente) throws FileNotFoundException, IOException {
+		List<Clientes> listado = this.getAllClientes();
+		for(Clientes clientes : listado) {
+			if(clientes.getIdCliente() == cliente.getIdCliente()) {
+				listado.remove(clientes);
+				listado.add(cliente);
+				this.saveAllClientes(listado);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
