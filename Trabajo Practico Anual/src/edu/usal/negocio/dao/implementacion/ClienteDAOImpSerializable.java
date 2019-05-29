@@ -21,6 +21,7 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
  
 	@Override
 	public boolean addCliente(Clientes cliente) throws FileNotFoundException, IOException {
+		
 		List<Clientes> listado = this.getAllClientes();
 		listado.add(cliente);
 		this.saveAllClientes(listado);

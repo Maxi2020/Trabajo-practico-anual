@@ -1,12 +1,15 @@
 package edu.usal.util;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class IOGeneral {
 	public static void pritln(String frase){
 		System.out.println(frase);
 	}
-	
+
 	public static int leerInt(String msjInicio, String msjError){
 		IOGeneral.pritln(msjInicio);
 		Scanner scan = new Scanner(System.in);
@@ -47,5 +50,14 @@ public class IOGeneral {
 		IOGeneral.pritln(msjInicio);
 		Scanner scan = new Scanner (System.in);
 		return scan.next();
+	}
+	
+	public static LocalDate LeerFecha(String msjInicio) {
+		IOGeneral.pritln(msjInicio);
+		Scanner in = new Scanner(System.in);
+		String date = in.next();
+		final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		final LocalDate localDate = LocalDate.parse(date, dateTimeFormatter);
+		return localDate;
 	}
 }
