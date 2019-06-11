@@ -20,4 +20,9 @@ public void setAerolinea(String aerolinea) {
 	this.aerolinea = aerolinea;
 }
 
+@Override
+public String toString() {
+	return aerolinea;
+}
+
 }

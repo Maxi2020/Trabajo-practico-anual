@@ -38,6 +38,10 @@ public Aerolineas getAerolinea() {
 public void setAerolinea(Aerolineas aerolinea) {
 	this.aerolinea = aerolinea;
 }
-
+@Override
+public String toString() {
+	return "[Alianza De Aerolinea=" + alianza + ", Numero De Aerolinea=" + numero + ", Categoria=" + categoria
+			+ ", Aerolinea=" + aerolinea.toString() + "]";
+}
 
 }

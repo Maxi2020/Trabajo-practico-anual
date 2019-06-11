@@ -30,5 +30,10 @@ public String getNumeroLaboral() {
 public void setNumeroLaboral(String numeroLaboral) {
 	this.numeroLaboral = numeroLaboral;
 }
+@Override
+public String toString() {
+	return "[Numero Personal=" + numeroPersonal + ", Numero Celular=" + numeroCelular + ", Numero Laboral="
+			+ numeroLaboral + "]";
+}
 
 }

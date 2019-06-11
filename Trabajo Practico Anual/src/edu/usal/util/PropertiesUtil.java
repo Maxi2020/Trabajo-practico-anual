@@ -10,7 +10,8 @@ private static Properties properties=CargarProperties();
 private static Properties CargarProperties() {
 	properties = new Properties();
 	try {
-		properties.load(new FileInputStream("Archivo.properties"));
+		properties.load(ClassLoader.getSystemResourceAsStream("Archivo.properties"));//para leer con el .jar en el mvc
+	//	properties.load(new FileInputStream("Archivo.properties")); //para leer desde el disco en el dao
 		return properties;
 	}
 	catch(IOException e){

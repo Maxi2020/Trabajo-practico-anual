@@ -20,4 +20,9 @@ public void setProvincias(String provincias) {
 	this.provincias = provincias;
 }
 
+@Override
+public String toString() {
+	return  provincias;
+}
+
 }

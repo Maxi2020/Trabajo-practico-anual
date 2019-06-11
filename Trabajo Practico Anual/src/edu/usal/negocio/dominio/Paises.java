@@ -20,4 +20,9 @@ public void setPais(String pais) {
 	this.pais = pais;
 }
 
+@Override
+public String toString() {
+	return  pais;
+}
+
 }

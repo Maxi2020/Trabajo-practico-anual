@@ -94,5 +94,14 @@ public Direcciones getDireccion() {
 public void setDireccion(Direcciones direccion) {
 	this.direccion = direccion;
 }
+@Override
+public String toString() {
+	
+	return "\n Cliente "+idCliente+" \n [Nombre= "+nombre+", Apellido= "+apellido+ ", Dni= "+dni+", Cuit= "+cuit+", Correo= "+correo+", "
+			+ "Fecha De Nacimiento= "+fechaNacimiento+"] \n-> Datos Pasaporte= \n "+pasaporte.toString()+" \n-> Datos De Contacto= \n "
+			+ telefono.toString()+ " \n-> Datos De Pasajero Frecuente= \n "+pasajerofrecuente.toString()+" \n-> Datos De Direccion= \n "
+			+direccion.toString()+ "]";
+			
+}
 
 }

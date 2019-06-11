@@ -55,6 +55,10 @@ public Provincias getProvincias() {
 public void setProvincias(Provincias provincias) {
 	this.provincias = provincias;
 }
+@Override
+public String toString() {
+	return "[Pais=" + paises.toString() + ", Provincia=" + provincias.toString()+", Codigo Postal= "+codigoPostal+", Ciudad=" + ciudad +", Calle=" + calle + ", Altura=" + altura;
+}
 
 
 }

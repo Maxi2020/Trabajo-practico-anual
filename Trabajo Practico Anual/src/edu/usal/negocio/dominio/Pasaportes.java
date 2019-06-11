@@ -3,6 +3,10 @@ package edu.usal.negocio.dominio;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * @author Agus
+ *
+ */
 public class Pasaportes implements Serializable {
 	
 private String numeroPasaporte, autoridadEmision;
@@ -47,6 +51,12 @@ public Paises getPaisEmision() {
 }
 public void setPaisEmision(Paises paisEmision) {
 	this.paisEmision = paisEmision;
+}
+@Override
+public String toString() {
+	return "[Numero De Pasaporte=" + numeroPasaporte + ", Autoridad De Emision=" + autoridadEmision
+			+ ", Fecha De Emision=" + fechaEmision + ", fecha De Vencimiento=" + fechaVencimiento + ", Pais De Emision="
+			+ paisEmision.toString() + "]";
 }
 
 

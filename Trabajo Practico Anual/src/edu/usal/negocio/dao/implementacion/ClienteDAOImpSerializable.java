@@ -75,11 +75,11 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
     	
     	if(!file.exists()) {
     	file = new File(PropertiesUtil.getPathClientes());
-    	file.mkdir();
+    	file.mkdirs();
     	file = new File(PropertiesUtil.getPathClientes(), PropertiesUtil.getFileClientes());
     	file.createNewFile();
+    	file = new File(PropertiesUtil.getPathClientes(), PropertiesUtil.getFileClientes());
     	List<Clientes> cliente = new ArrayList<Clientes>();
-    	this.saveAllClientes(cliente);
     	return cliente;
     	
     }
