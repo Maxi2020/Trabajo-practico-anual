@@ -1,25 +1,29 @@
 package edu.usal.negocio.dominio;
 
-public class AeropuertoLlegada extends Vuelos{
-//provincia y pais objeto sacar extend objeto de vuelos
-	private String identificacionAeropuerto, Ciudad, Provincia, Pais;
+import java.io.Serializable;
+
+public class AeropuertoLlegada implements Serializable{
+
+	private String id_aeropuerto_llegada, Ciudad;
+	private Paises pais;
+	private Provincias provincia;
 	
 	public AeropuertoLlegada() {}
 
-	public AeropuertoLlegada(String identificacionAeropuerto, String ciudad, String provincia, String pais) {
+	public AeropuertoLlegada(String id_aeropuerto_llegada, String ciudad, Paises pais, Provincias provincia) {
 		super();
-		this.identificacionAeropuerto = identificacionAeropuerto;
-		Ciudad = ciudad;
-		Provincia = provincia;
-		Pais = pais;
+		this.id_aeropuerto_llegada = id_aeropuerto_llegada;
+		this.Ciudad = ciudad;
+		this.pais = pais;
+		this.provincia = provincia;
 	}
 
-	public String getIdentificacionAeropuerto() {
-		return identificacionAeropuerto;
+	public String getId_aeropuerto_llegada() {
+		return id_aeropuerto_llegada;
 	}
 
-	public void setIdentificacionAeropuerto(String identificacionAeropuerto) {
-		this.identificacionAeropuerto = identificacionAeropuerto;
+	public void setIdentificacionAeropuerto(String id_aeropuerto_llegada) {
+		this.id_aeropuerto_llegada = id_aeropuerto_llegada;
 	}
 
 	public String getCiudad() {
@@ -30,20 +34,27 @@ public class AeropuertoLlegada extends Vuelos{
 		Ciudad = ciudad;
 	}
 
-	public String getProvincia() {
-		return Provincia;
+	public Paises getPais() {
+		return pais;
 	}
 
-	public void setProvincia(String provincia) {
-		Provincia = provincia;
+	public void setPais(Paises pais) {
+		this.pais = pais;
 	}
 
-	public String getPais() {
-		return Pais;
+	public Provincias getProvincia() {
+		return provincia;
 	}
 
-	public void setPais(String pais) {
-		Pais = pais;
+	public void setProvincia(Provincias provincia) {
+		this.provincia = provincia;
+	}
+	
+	@Override
+	public String toString(){
+
+	return "[Aeropuerto de Llegada=" + id_aeropuerto_llegada+ ", Ciudad="+ Ciudad + ", Pais=" + pais.toString() + ", Provincia=" + provincia.toString() + "]";
+
 	}
 	
 }

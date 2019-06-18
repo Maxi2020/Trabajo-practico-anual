@@ -1,6 +1,7 @@
 package edu.usal.util;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
@@ -60,4 +61,15 @@ public class IOGeneral {
 		final LocalDate localDate = LocalDate.parse(date, dateTimeFormatter);
 		return localDate;
 	}
+	
+	public static LocalDateTime LeerFechahora(String msjInicio) {
+		IOGeneral.pritln(msjInicio);
+		Scanner in = new Scanner(System.in);
+		String date = in.next();
+		final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/ddHH:mm");
+		final LocalDateTime localDate = LocalDateTime.parse(date, dateTimeFormatter);
+		return localDate;
+	}
+	
+
 }

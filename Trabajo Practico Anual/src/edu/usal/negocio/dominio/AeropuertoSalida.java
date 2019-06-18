@@ -1,25 +1,29 @@
 package edu.usal.negocio.dominio;
 
-public class AeropuertoSalida extends Vuelos{
-//idem llegadada
-	private String identificacionAeropuerto, Ciudad, Provincia, Pais;
+import java.io.Serializable;
 
-	public AeropuertoSalida() {}
+public class AeropuertoSalida implements Serializable{
+
+	private String id_aeropuerto_salida, Ciudad;
+	private Paises pais;
+	private Provincias provincia;
 	
-	public AeropuertoSalida(String identificacionAeropuerto, String ciudad, String provincia, String pais) {
+	public AeropuertoSalida() {}
+
+	public AeropuertoSalida(String id_aeropuerto_salida, String ciudad, Paises pais, Provincias provincia) {
 		super();
-		this.identificacionAeropuerto = identificacionAeropuerto;
-		Ciudad = ciudad;
-		Provincia = provincia;
-		Pais = pais;
+		this.id_aeropuerto_salida = id_aeropuerto_salida;
+		this.Ciudad = ciudad;
+		this.pais = pais;
+		this.provincia = provincia;
 	}
 
-	public String getIdentificacionAeropuerto() {
-		return identificacionAeropuerto;
+	public String getId_aeropuerto_salida() {
+		return id_aeropuerto_salida;
 	}
 
-	public void setIdentificacionAeropuerto(String identificacionAeropuerto) {
-		this.identificacionAeropuerto = identificacionAeropuerto;
+	public void setIdentificacionAeropuerto(String id_aeropuerto_salida) {
+		this.id_aeropuerto_salida = id_aeropuerto_salida;
 	}
 
 	public String getCiudad() {
@@ -30,20 +34,53 @@ public class AeropuertoSalida extends Vuelos{
 		Ciudad = ciudad;
 	}
 
-	public String getProvincia() {
-		return Provincia;
+	public Paises getPais() {
+		return pais;
 	}
 
-	public void setProvincia(String provincia) {
-		Provincia = provincia;
+	public void setPais(Paises pais) {
+		this.pais = pais;
 	}
 
-	public String getPais() {
-		return Pais;
+	public Provincias getProvincia() {
+		return provincia;
 	}
 
-	public void setPais(String pais) {
-		Pais = pais;
+	public void setProvincia(Provincias provincia) {
+		this.provincia = provincia;
 	}
+	
+	@Override
+	public String toString(){
+
+	return "[Aeropuerto de Salida=" + id_aeropuerto_salida + ", Ciudad="+ Ciudad + ", Pais=" + pais.toString() + ", Provincia=" + provincia.toString() + "]";
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

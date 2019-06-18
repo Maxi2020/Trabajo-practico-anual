@@ -26,4 +26,7 @@ public static String getPathClientes()  {
 public static String getFileClientes() {
 	return properties.getProperty("FileCliente");
 }
+public static String getFileVuelos() {
+	return properties.getProperty("FileVuelo");
+}
 }

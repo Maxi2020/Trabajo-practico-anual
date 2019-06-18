@@ -16,7 +16,7 @@ private void menu() {
 		switch(res){
 			case 1:	MenuControllerCliente cliente = new MenuControllerCliente();
 					break;
-			case 2:
+			case 2: MenuControllerVuelo vuelo = new MenuControllerVuelo();
 					break;
 			case 3:
 					break;

@@ -7,7 +7,7 @@ public MenuVistaPrincipal() {
 	
 }
 public int ImprimirMenu() {
-	return IOGeneral.leerInt("<<<MENU PRINCIPAL>>>\nIngrese Opcion \n1-Menu De Clientes\n0-Salir", "Lo Ingresado No Fue Un Numero Entero");
+	return IOGeneral.leerInt("<<<MENU PRINCIPAL>>>\nIngrese Opcion \n1-Menu De Clientes\n2-Menu de Vuelos\n0-Salir", "Lo Ingresado No Fue Un Numero Entero");
 }
 public void OpcionFail() {
 	IOGeneral.pritln("Lo Ingresado No Fue Una Opcion Valida");
