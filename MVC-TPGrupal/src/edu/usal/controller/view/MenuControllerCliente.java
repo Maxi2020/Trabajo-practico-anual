@@ -37,13 +37,13 @@ public void MostrarMenu() {
 }
 private void addCliente() {
 	
-		Clientes cliente = vistaCliente.PedirClientes();
+		Clientes cliente = vistaCliente.AgregarClientes();
 		clienteDAO = ClienteFactory.getClienteDAO("Serializable");
 		try {
 			if(clienteDAO.addCliente(cliente)) {
 				vistaCliente.OperacionExitosa();
 			}else {
-				vistaCliente.OperacionFail();
+				vistaCliente.OperacionFallida();;
 			}
 		}
 		catch (FileNotFoundException e) {
@@ -75,14 +75,15 @@ private void updateCliente() {
 	clienteDAO = ClienteFactory.getClienteDAO("Serializable");
 	Clientes clienteModificar = new Clientes (null, null, null, null, null, null, vistaCliente.PedirID("Modificar Cliente"), null, null, null, null);
 	clienteModificar = clienteDAO.queryCliente(clienteModificar);
+	clienteModificar = vistaCliente.AgregarClienteModificado(clienteModificar);
 	if(clienteModificar != null) {
-		if(vistaCliente.Confirmacion(clienteModificar)) {
+		if(vistaCliente.ConfirmarModificacion(clienteModificar)) {
 			if(clienteDAO.updateCliente(clienteModificar)) {
 				
 				vistaCliente.OperacionExitosa();
 			}
 		else {
-			vistaCliente.OpcionFail();
+			vistaCliente.OpcionInvalida();;
 		}
 	}   else {
 		vistaCliente.CancelarOperacion();
@@ -109,7 +110,7 @@ private void deleteCliente() {
 			if(clienteDAO.deleteCliente(clienteEliminar)) {
 				vistaCliente.OperacionExitosa();
 			}else {
-				vistaCliente.OpcionFail();
+				vistaCliente.OpcionInvalida();;
 			}
 			}else {
 				vistaCliente.CancelarOperacion();

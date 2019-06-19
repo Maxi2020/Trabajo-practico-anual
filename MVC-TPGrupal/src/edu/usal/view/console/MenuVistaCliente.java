@@ -1,6 +1,5 @@
 package edu.usal.view.console;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import edu.usal.negocio.dominio.Aerolineas;
@@ -24,14 +23,14 @@ public class MenuVistaCliente {
 				, "\n Lo Ingresado No Corresponde A Ninguna Opcion");
 	}
 	
-	public void OpcionFail(){
+	public void OpcionInvalida(){
 		IOGeneral.pritln("\n Lo Ingresado No Es Valido");
 	}
 	
 	public void MostraCliente(Clientes cliente) {
 		IOGeneral.pritln(cliente.toString());
 	}
-	public Clientes PedirClientes() {
+	public Clientes AgregarClientes() {
 		
 		Clientes cliente = new Clientes(); Pasaportes pasaporte = new Pasaportes(); Paises paisEmision =new Paises(); Telefonos telefono =new Telefonos(); 
 		Direcciones direccion = new Direcciones(); Paises paises = new Paises(); Provincias provincia= new Provincias(); PasajerosFrecuentes pasajero = new PasajerosFrecuentes();
@@ -62,8 +61,8 @@ public class MenuVistaCliente {
 	public void OperacionExitosa() {
 		IOGeneral.pritln("\n Operacion Realizada Con Exito");
 	}
-	public void OperacionFail() {
-		IOGeneral.pritln("\n La Operacion No Se Pudo Realizae");
+	public void OperacionFallida() {
+		IOGeneral.pritln("\n La Operacion No Se Pudo Realizar");
 	}
 	public void LugarError(String lugar, String causa) {
 		IOGeneral.pritln("\n La operacion ha fracasado, no fue realizada.\n Error("+lugar+")\tCausa: "+causa);
@@ -83,7 +82,7 @@ public class MenuVistaCliente {
 		return IOGeneral.leerInt("\n Ingrese ID Para Realizar La Operacion ("+causa+")", "\n Debe Ingresar Un Numero Entero");
 	}
 	public boolean Confirmacion(Clientes elemento) {
-		if(IOGeneral.leerInt("\n Confirma Seleccionar:\n"+elemento.toString()+"\n Ingrese 1 Para Confirmar Su Seleccion", "\n Debe Ingresar Un Numero Entero")==1) {
+		if(IOGeneral.leerInt("\n Confirma Seleccionar:\n"+elemento.toString()+" \n \n Ingrese 1 Para Confirmar Su Seleccion", "\n Debe Ingresar Un Numero Entero")==1) {
 			return true;
 		}
 		return false;
@@ -91,7 +90,7 @@ public class MenuVistaCliente {
 	public void CancelarOperacion() {
 		IOGeneral.pritln("\n Operacion Cancelada No Se Realizaron Cambios");
 	}
-	public Clientes CosultaDatosModificados(Clientes modificado) {
+	public Clientes AgregarClienteModificado(Clientes modificado) {
 		Pasaportes pasaporte = new Pasaportes(); Paises paisEmision =new Paises(); Telefonos telefono =new Telefonos(); 
 		Direcciones direccion = new Direcciones(); Aerolineas aerolinea = new Aerolineas();
 		Paises paises = new Paises(); Provincias provincia= new Provincias(); PasajerosFrecuentes pasajero = new PasajerosFrecuentes();
@@ -120,7 +119,7 @@ public class MenuVistaCliente {
 		  return modificado;
 	}
 	public boolean ConfirmarModificacion(Clientes modificar) {
-		if(IOGeneral.leerInt("\n ¿Confirma La Modificacion? \n"+modificar.toString()+"\n Ingrese 1 Para Confirmar", "\n Ingresar Numero Entero")==1) {
+		if(IOGeneral.leerInt("\n ¿Confirma La Modificacion? \n"+modificar.toString()+"\n \n Ingrese 1 Para Confirmar", "\n Ingresar Numero Entero")==1) {
 			return true;
 		}
 		return false;
