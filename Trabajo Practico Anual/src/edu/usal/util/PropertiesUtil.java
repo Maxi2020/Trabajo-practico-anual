@@ -29,4 +29,8 @@ public static String getFileClientes() {
 public static String getFileVuelos() {
 	return properties.getProperty("FileVuelo");
 }
+public static String getFileVentas() {
+	return properties.getProperty("FileVenta");
 }
+}
+
