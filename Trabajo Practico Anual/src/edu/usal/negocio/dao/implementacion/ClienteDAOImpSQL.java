@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import edu.usal.util.DAOException;
 public class ClienteDAOImpSQL implements ClienteDAO {
 	
 	private Connection cn;
-	final String INSERT = "INSERT INTO clientes (id_cliente, nombre, apellido, dni,cuit, fecha_nacimiento, email) VALUES(?,?,?,?,?,?,?)";
+	final String INSERT = "INSERT INTO clientes (nombre, apellido, dni,cuit, fecha_nacimiento, email) VALUES(?,?,?,?,?,?)";
 	final String UPDATE = "UPDATE clientes SET nombre=?, apellido=?, dni=?, cuit=?, fecha_nacimiento=?, email=? WHERE id_cliente=?";
 	final String DELETE = "DELETE FROM clientes WHERE id_cliente=?";
 	final String GETALL = "SELECT id_cliente, nombre, apellido, dni,cuit, fecha_nacimiento, email FROM clientes";
@@ -29,25 +30,37 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 	public boolean addCliente(Clientes cliente) throws DAOException{
 		PreparedStatement ps = null;
 		cn = Connections.getConnection();
+		ResultSet rs = null;
 		try { 
 			ps = cn.prepareStatement(INSERT);
-			ps.setInt(1, cliente.getIdCliente());
-			ps.setString(2, cliente.getNombre());
-			ps.setString(3, cliente.getApellido());
-			ps.setString(4, cliente.getDni());
-			ps.setString(5, cliente.getCuit());
-			ps.setDate(6, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
-			ps.setString(7, cliente.getEmail());
-			
+			ps.setString(1, cliente.getNombre());
+			ps.setString(2, cliente.getApellido());
+			ps.setString(3, cliente.getDni());
+			ps.setString(4, cliente.getCuit());
+			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
+			ps.setString(6, cliente.getEmail());
 			if(ps.executeUpdate() == 0) {
 			
 				throw new DAOException("FALLO EN AGREGAR SQL cliente");
 			}
-		
+
+			rs = ps.getGeneratedKeys();
+		if(rs.next()) {
+			cliente.setIdCliente(rs.getInt(1));
+		}else {
+			throw new DAOException("NO SE PUDO GENERAR EL Id");
+		}
 		} catch (SQLException e) {
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{
+			if(rs !=null) {
+				try {
+					rs.close();
+				}catch(SQLException e) {
+					new DAOException("ERROR CLOSE RS querycliente", e);
+				}
+			}
 			if(ps !=null) {
 				try {
 					ps.close();
@@ -67,13 +80,13 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 		try { 
 
 			ps = cn.prepareStatement(UPDATE);
-			ps.setInt(1, cliente.getIdCliente());
-			ps.setString(2, cliente.getNombre());
-			ps.setString(3, cliente.getApellido());
-			ps.setString(4, cliente.getDni());
-			ps.setString(5, cliente.getCuit());
-			ps.setDate(6, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
-			ps.setString(7, cliente.getEmail());
+			
+			ps.setString(1, cliente.getNombre());
+			ps.setString(2, cliente.getApellido());
+			ps.setString(3, cliente.getDni());
+			ps.setString(4, cliente.getCuit());
+			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
+			ps.setString(6, cliente.getEmail());
 			
 			if(ps.executeUpdate() == 0) {
 			
@@ -212,14 +225,15 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 public static void main ( String [] args) throws DAOException, FileNotFoundException, IOException {
 	ClienteDAO clienteDAO;
 	clienteDAO = ClienteFactory.getClienteDAO("Sql");
-	List<Clientes> clientes = clienteDAO.getAllClientes();
-	for (Clientes a : clientes) {
-		System.out.print(a.toString());
-	} 
-		/*
-		 * LocalDate ahora = LocalDate.now(); Clientes client = new Clientes
-		 * ("agusti","cammarota","65","65","ds",ahora, 0 , null, null, null, null);
-		 * client.setIdCliente(1); clienteDAO.addCliente(client);
-		 */
+		
+		  List<Clientes> clientes = clienteDAO.getAllClientes();
+		  //for (Clientes a :
+		  //clientes) { System.out.print(a.toString()); }
+		 
+		
+		  LocalDate ahora = LocalDate.now(); Clientes client = new Clientes
+		  ("agusti","cammarota","65","65","ds",ahora, 1 , null, null, null, null);
+		  clienteDAO.addCliente(client);
+		 
 }
 }
