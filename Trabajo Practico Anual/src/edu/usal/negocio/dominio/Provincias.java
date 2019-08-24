@@ -1,28 +1,37 @@
 package edu.usal.negocio.dominio;
 
-import java.io.Serializable;
+public class Provincias {
 
-public class Provincias implements Serializable {
-	private String provincias;
-
+	private int idProvincia;
+	private String nombreProvincia;
+	
 public Provincias() {}
 
-public Provincias(String provincias) {
+public Provincias(int idProvincia, String nombreProvincia) {
 	super();
-	this.provincias = provincias;
+	this.idProvincia = idProvincia;
+	this.nombreProvincia = nombreProvincia;
 }
 
-public String getProvincias() {
-	return provincias;
+public int getIdProvincia() {
+	return idProvincia;
 }
 
-public void setProvincias(String provincias) {
-	this.provincias = provincias;
+public void setIdProvincia(int idProvincia) {
+	this.idProvincia = idProvincia;
+}
+
+public String getNombreProvincia() {
+	return nombreProvincia;
+}
+
+public void setNombreProvincia(String nombreProvincia) {
+	this.nombreProvincia = nombreProvincia;
 }
 
 @Override
 public String toString() {
-	return  provincias;
+	return "Provincias [idProvincia=" + idProvincia + ", nombreProvincia=" + nombreProvincia + "]";
 }
 
 }

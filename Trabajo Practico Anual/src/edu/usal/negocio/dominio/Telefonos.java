@@ -1,39 +1,71 @@
 package edu.usal.negocio.dominio;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+
 
 public class Telefonos implements Serializable  {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private String numeroPersonal, numeroCelular, numeroLaboral;
+private int idCliente, idTelefono;
+
 public Telefonos() {}
-public Telefonos(String numeroPersonal, String numeroCelular, String numeroLaboral) {
+
+public Telefonos(String numeroPersonal, String numeroCelular, String numeroLaboral, int idCliente, int idTelefono) {
 	super();
 	this.numeroPersonal = numeroPersonal;
 	this.numeroCelular = numeroCelular;
 	this.numeroLaboral = numeroLaboral;
+	this.idCliente = idCliente;
+	this.idTelefono = idTelefono;
 }
+
 public String getNumeroPersonal() {
 	return numeroPersonal;
 }
+
 public void setNumeroPersonal(String numeroPersonal) {
 	this.numeroPersonal = numeroPersonal;
 }
+
 public String getNumeroCelular() {
 	return numeroCelular;
 }
+
 public void setNumeroCelular(String numeroCelular) {
 	this.numeroCelular = numeroCelular;
 }
+
 public String getNumeroLaboral() {
 	return numeroLaboral;
 }
+
 public void setNumeroLaboral(String numeroLaboral) {
 	this.numeroLaboral = numeroLaboral;
 }
+
+public int getIdCliente() {
+	return idCliente;
+}
+
+public void setIdCliente(int idCliente) {
+	this.idCliente = idCliente;
+}
+
+public int getIdTelefono() {
+	return idTelefono;
+}
+
+public void setIdTelefono(int idTelefono) {
+	this.idTelefono = idTelefono;
+}
+
 @Override
 public String toString() {
-	return "[Numero Personal=" + numeroPersonal + ", Numero Celular=" + numeroCelular + ", Numero Laboral="
-			+ numeroLaboral + "]";
+	return "Telefonos [numeroPersonal=" + numeroPersonal + ", numeroCelular=" + numeroCelular + ", numeroLaboral="
+			+ numeroLaboral + ", idCliente=" + idCliente + ", idTelefono=" + idTelefono + "]";
 }
 
 }

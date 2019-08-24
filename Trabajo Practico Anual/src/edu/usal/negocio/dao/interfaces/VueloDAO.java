@@ -9,10 +9,10 @@ import edu.usal.negocio.dominio.Vuelos;
 public interface VueloDAO {
 
 	public boolean addVuelo(Vuelos vuelo) throws IOException;
-	public boolean updateVuelo(Vuelos vuelo) throws FileNotFoundException, IOException;
-	public boolean deleteVuelo(Vuelos vuelo) throws FileNotFoundException, IOException;
-	public Vuelos queryVuelo(Vuelos vuelo) throws FileNotFoundException, IOException;
+	public boolean updateVuelo(long Id, Vuelos vuelo) throws FileNotFoundException, IOException;
+	public boolean deleteVuelo(long Id) throws FileNotFoundException, IOException;
+	public Vuelos queryVuelo(long Id) throws FileNotFoundException, IOException;
 	public List<Vuelos> getAllVuelos() throws FileNotFoundException, IOException;
-	public void saveAllVuelos(List<Vuelos> listado) throws FileNotFoundException, IOException;
+
 	
 }

@@ -12,7 +12,6 @@ import java.util.List;
 
 import edu.usal.negocio.dao.interfaces.VueloDAO;
 import edu.usal.negocio.dominio.Vuelos;
-import edu.usal.util.IOGeneral;
 import edu.usal.util.PropertiesUtil;
 
 public class VueloDAOImpSerializable implements VueloDAO {
@@ -35,11 +34,11 @@ public class VueloDAOImpSerializable implements VueloDAO {
 	}
 
 	@Override
-	public boolean updateVuelo(Vuelos vuelo) throws FileNotFoundException, IOException {
+	public boolean updateVuelo(long Id, Vuelos vuelo) throws FileNotFoundException, IOException {
 		
 		List<Vuelos> listado = this.getAllVuelos();
 		for(Vuelos vuelos : listado) {
-			if(vuelos.getId_vuelo() == vuelo.getId_vuelo() ) {
+			if(vuelos.getIdVuelo() == Id ) {
 				listado.remove(vuelos);
 				listado.add(vuelo);
 				this.saveAllVuelos(listado);
@@ -50,11 +49,11 @@ public class VueloDAOImpSerializable implements VueloDAO {
 	}
 
 	@Override
-	public boolean deleteVuelo(Vuelos vuelo) throws FileNotFoundException, IOException {
+	public boolean deleteVuelo(long Id) throws FileNotFoundException, IOException {
 
 		List<Vuelos> listado = this.getAllVuelos();
 		for(Vuelos vuelos : listado) {
-			if(vuelos.getId_vuelo() == vuelo.getId_vuelo()) {
+			if(vuelos.getIdVuelo() == Id) {
 				listado.remove(vuelos);
 				this.saveAllVuelos(listado);
 				return true;
@@ -65,11 +64,11 @@ public class VueloDAOImpSerializable implements VueloDAO {
 	}
 
 	@Override
-	public Vuelos queryVuelo(Vuelos vuelo) throws FileNotFoundException, IOException {
+	public Vuelos queryVuelo(long Id) throws FileNotFoundException, IOException {
 		
 		List<Vuelos> listado = getAllVuelos();
 		for(Vuelos vuelos : listado) {
-			if(vuelos.getId_vuelo() == vuelo.getId_vuelo()) {
+			if(vuelos.getIdVuelo() == Id) {
 					 return vuelos;
 				 }
 			 }
@@ -88,7 +87,7 @@ public class VueloDAOImpSerializable implements VueloDAO {
     	file.createNewFile();
     	file = new File(PropertiesUtil.getPathClientes(), PropertiesUtil.getFileVuelos());
     	List<Vuelos> vuelo = new ArrayList<Vuelos>();
-    	//this.saveAllVuelos(vuelo);
+    	this.saveAllVuelos(vuelo);
     	return vuelo; 
     	}
     	
@@ -103,7 +102,7 @@ public class VueloDAOImpSerializable implements VueloDAO {
 			 
 	     }
 	     catch (ClassNotFoundException e) {
-	    	 IOGeneral.pritln("Error en la lectura del archivo\nMensaje: "+e.getMessage());
+	    	e.printStackTrace();
 	     }
 		return null;
 		

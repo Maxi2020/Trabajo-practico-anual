@@ -1,28 +1,37 @@
 package edu.usal.negocio.dominio;
 
-import java.io.Serializable;
-
-public class Paises implements Serializable {
-private String pais;
+public class Paises {
+	
+	private int idPais;
+	private String nombrePais;
 
 public Paises() {}
 
-public Paises(String pais) {
+public Paises(int idPais, String nombrePais) {
 	super();
-	this.pais = pais;
+	this.idPais = idPais;
+	this.nombrePais = nombrePais;
 }
 
-public String getPais() {
-	return pais;
+public int getIdPais() {
+	return idPais;
 }
 
-public void setPais(String pais) {
-	this.pais = pais;
+public void setIdPais(int idPais) {
+	this.idPais = idPais;
+}
+
+public String getNombrePais() {
+	return nombrePais;
+}
+
+public void setNombrePais(String nombrePais) {
+	this.nombrePais = nombrePais;
 }
 
 @Override
 public String toString() {
-	return  pais;
+	return "Paises [idPais=" + idPais + ", nombrePais=" + nombrePais + "]";
 }
 
 }

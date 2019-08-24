@@ -1,12 +1,12 @@
 package edu.usal.negocio.dao.Factory;
 
-import edu.usal.negocio.dao.implementacion.VentasDAOImpSerializable;
-import edu.usal.negocio.dao.interfaces.VentasDAO;
+import edu.usal.negocio.dao.implementacion.VentaDAOImpSerializable;
+import edu.usal.negocio.dao.interfaces.VentaDAO;
 
 public class VentaFactory {
-	public static VentasDAO getVentasDAO (String source) {
+	public static VentaDAO getVentasDAO (String source) {
 		if(source.equals("Serializable")) {
-			return new VentasDAOImpSerializable();
+			return new VentaDAOImpSerializable();
 		}
 		return null;
 	}

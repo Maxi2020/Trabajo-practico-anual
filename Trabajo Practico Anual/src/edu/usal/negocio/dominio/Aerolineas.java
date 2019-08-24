@@ -1,28 +1,47 @@
 package edu.usal.negocio.dominio;
 
-import java.io.Serializable;
+public class Aerolineas {
 
-public class Aerolineas implements Serializable {
-private String aerolinea;
+	private int idAerolinea;
+	private String nombreAerolinea, alianza;
 
 public Aerolineas() {}
 
-public Aerolineas(String aerolinea) {
+public Aerolineas(int idAerolinea, String nombreAerolinea, String alianza) {
 	super();
-	this.aerolinea = aerolinea;
+	this.idAerolinea = idAerolinea;
+	this.nombreAerolinea = nombreAerolinea;
+	this.alianza = alianza;
 }
 
-public String getAerolinea() {
-	return aerolinea;
+public int getIdAerolinea() {
+	return idAerolinea;
 }
 
-public void setAerolinea(String aerolinea) {
-	this.aerolinea = aerolinea;
+public void setIdAerolinea(int idAerolinea) {
+	this.idAerolinea = idAerolinea;
+}
+
+public String getNombreAerolinea() {
+	return nombreAerolinea;
+}
+
+public void setNombreAerolinea(String nombreAerolinea) {
+	this.nombreAerolinea = nombreAerolinea;
+}
+
+public String getAlianza() {
+	return alianza;
+}
+
+public void setAlianza(String alianza) {
+	this.alianza = alianza;
 }
 
 @Override
 public String toString() {
-	return aerolinea;
+	return "Aerolineas [idAerolinea=" + idAerolinea + ", nombreAerolinea=" + nombreAerolinea + ", alianza=" + alianza
+			+ "]";
 }
 
 }

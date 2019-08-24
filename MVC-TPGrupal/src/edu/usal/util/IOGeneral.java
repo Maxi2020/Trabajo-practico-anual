@@ -11,6 +11,15 @@ public class IOGeneral {
 		System.out.println(frase);
 	}
 
+	public static long leerlong(String msjInicio, String msjError){
+		IOGeneral.pritln(msjInicio);
+		Scanner scan = new Scanner(System.in);
+		while(!scan.hasNextLong()){
+			IOGeneral.pritln(msjError);
+			scan.next();
+		}
+		return scan.nextLong();
+	}
 	public static int leerInt(String msjInicio, String msjError){
 		IOGeneral.pritln(msjInicio);
 		Scanner scan = new Scanner(System.in);

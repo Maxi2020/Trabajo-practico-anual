@@ -3,10 +3,8 @@ package edu.usal.negocio.dao.implementacion;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import edu.usal.negocio.dao.interfaces.ClienteDAO;
 import edu.usal.negocio.dominio.Clientes;
-import edu.usal.util.IOGeneral;
 import edu.usal.util.PropertiesUtil;
 
 
@@ -21,12 +19,10 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
  
 	@Override
 	public boolean addCliente(Clientes cliente) throws FileNotFoundException, IOException {
-		
 		List<Clientes> listado = this.getAllClientes();
 		listado.add(cliente);
 		this.saveAllClientes(listado);
 		return true;
-	
 	}
 
 	@Override
@@ -44,10 +40,10 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
 	}
 
 	@Override
-	public boolean deleteCliente(Clientes cliente) throws FileNotFoundException, IOException {
+	public boolean deleteCliente(Clientes clientes) throws FileNotFoundException, IOException {
 		List<Clientes> listado = this.getAllClientes();
-		for(Clientes clientes : listado) {
-			if(clientes.getIdCliente() == cliente.getIdCliente()) {
+		for(Clientes cliente : listado) {
+			if(cliente.getIdCliente() == clientes.getIdCliente()) {
 				listado.remove(clientes);
 				this.saveAllClientes(listado);
 				return true;
@@ -58,10 +54,10 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
 	}
 
 	@Override
-	public Clientes queryCliente(Clientes cliente) throws FileNotFoundException, IOException {
+	public Clientes queryCliente(int Id) throws FileNotFoundException, IOException {
 		List<Clientes> listado = getAllClientes();
 		for(Clientes clientes : listado) {
-			if(clientes.getIdCliente() == cliente.getIdCliente()) {
+			if(clientes.getIdCliente() == Id) {
 					 return clientes;
 				 }
 			 }
@@ -94,7 +90,7 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
 			 
 	     }
 	     catch (ClassNotFoundException e) {
-	    	 IOGeneral.pritln("Error en la lectura del archivo\nMensaje: "+e.getMessage());
+	    	 e.printStackTrace();
 	     }
 	     return null;
     }
