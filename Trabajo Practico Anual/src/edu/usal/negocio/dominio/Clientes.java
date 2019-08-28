@@ -10,7 +10,7 @@ public  class Clientes implements Serializable {
 	private static final long serialVersionUID = 1L;
 private String nombre, apellido, dni, cuit, email;
 private LocalDate fechaNacimiento;
-private int idCliente;
+private Long idCliente;
 private Pasaportes pasaporte=null;
 private Telefonos telefono=null;
 private PasajerosFrecuentes pasajerofrecuente=null;
@@ -19,7 +19,7 @@ private Direcciones direccion=null;
 public Clientes () {}
 
 public Clientes(String nombre, String apellido, String dni, String cuit, String email, LocalDate fechaNacimiento,
-		int idCliente, Pasaportes pasaporte, Telefonos telefono, PasajerosFrecuentes pasajerofrecuente,
+		Long idCliente, Pasaportes pasaporte, Telefonos telefono, PasajerosFrecuentes pasajerofrecuente,
 		Direcciones direccion) {
 	super();
 	this.nombre = nombre;
@@ -83,11 +83,11 @@ public void setFechaNacimiento(LocalDate fechaNacimiento) {
 	this.fechaNacimiento = fechaNacimiento;
 }
 
-public int getIdCliente() {
+public Long getIdCliente() {
 	return idCliente;
 }
 
-public void setIdCliente(int idCliente) {
+public void setIdCliente(Long idCliente) {
 	this.idCliente = idCliente;
 }
 

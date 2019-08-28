@@ -9,11 +9,12 @@ public class Telefonos implements Serializable  {
 	 */
 	private static final long serialVersionUID = 1L;
 private String numeroPersonal, numeroCelular, numeroLaboral;
-private int idCliente, idTelefono;
+private int idCliente;
+private Long idTelefono;
 
 public Telefonos() {}
 
-public Telefonos(String numeroPersonal, String numeroCelular, String numeroLaboral, int idCliente, int idTelefono) {
+public Telefonos(String numeroPersonal, String numeroCelular, String numeroLaboral, int idCliente, Long idTelefono) {
 	super();
 	this.numeroPersonal = numeroPersonal;
 	this.numeroCelular = numeroCelular;
@@ -54,11 +55,11 @@ public void setIdCliente(int idCliente) {
 	this.idCliente = idCliente;
 }
 
-public int getIdTelefono() {
+public Long getIdTelefono() {
 	return idTelefono;
 }
 
-public void setIdTelefono(int idTelefono) {
+public void setIdTelefono(Long idTelefono) {
 	this.idTelefono = idTelefono;
 }
 
