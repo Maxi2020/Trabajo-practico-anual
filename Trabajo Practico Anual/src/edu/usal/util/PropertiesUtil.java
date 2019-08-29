@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+import edu.usal.negocio.dominio.Aerolineas;
+
 public class PropertiesUtil {
 private static Properties properties=CargarProperties();
 	
@@ -38,11 +40,11 @@ public static String getPathVentas()  {
 public static String getFileVentas() {
 	return properties.getProperty("FileVenta");
 }
-public static String getLineasAereas()  {
-	return properties.getProperty("PathLineasAereas");
+public static String getAerolineas()  {
+	return properties.getProperty("PathAerolineas");
 }
-public static String getFileLineasAereas() {
-	return properties.getProperty("FileLineasAereas");
+public static String getFileAerolineas() {
+	return properties.getProperty("FileAerolineas");
 }
 public static String getPathTxt()  {
 	return properties.getProperty("PathTxt");

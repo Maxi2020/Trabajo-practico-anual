@@ -1,7 +1,5 @@
 package edu.usal.negocio.dao.implementacion;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,32 +8,26 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import edu.usal.negocio.dao.Factory.ClienteFactory;
-import edu.usal.negocio.dao.Factory.TelefonoFactory;
 import edu.usal.negocio.dao.interfaces.ClienteDAO;
-import edu.usal.negocio.dao.interfaces.TelefonoDAO;
 import edu.usal.negocio.dominio.Clientes;
-import edu.usal.negocio.dominio.Telefonos;
-import edu.usal.util.Connections;
 import edu.usal.util.DAOException;
 
 public class ClienteDAOImpSQL implements ClienteDAO {
-	private TelefonoDAO telefonoDAO;
+	
+	private ResultSet rs = null;
 	private Connection cn;
 	final String INSERT = "INSERT INTO clientes (nombre, apellido, dni,cuit, fecha_nacimiento, email) VALUES(?,?,?,?,?,?)";
 	final String UPDATE = "UPDATE clientes SET nombre=?, apellido=?, dni=?, cuit=?, fecha_nacimiento=?, email=? WHERE id_cliente=?";
 	final String DELETE = "DELETE FROM clientes WHERE id_cliente=?";
 	final String GETALL = "SELECT id_cliente, nombre, apellido, dni,cuit, fecha_nacimiento, email FROM clientes";
 	final String GETONE = "SELECT id_cliente, nombre, apellido, dni,cuit, fecha_nacimiento, email FROM clientes WHERE id_cliente=?";
+	
 
 	//@Override
-	public boolean addCliente(Clientes cliente) throws DAOException, SQLException{
+	public void addCliente(Clientes cliente, Connection cn) throws DAOException, SQLException{
 		PreparedStatement ps = null;
-		ResultSet rs = null;
-		cn = Connections.getConnection();
 		cn.setAutoCommit(false);
-		telefonoDAO = TelefonoFactory.getTelefonoDAO("Sql");
+		
 		try { 
 			ps= cn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, cliente.getNombre());
@@ -44,52 +36,47 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 			ps.setString(4, cliente.getCuit());
 			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
 			ps.setString(6, cliente.getEmail());
-			
 			ps.executeUpdate();
-			rs = ps.getGeneratedKeys();
+			ps.getGeneratedKeys();
+			
 			while(rs.next())
 				cliente.setIdCliente((long) rs.getInt(1));
-			if(telefonoDAO.addTelefono(cliente, cn)) {
-				cn.commit();
-				return true;
-			}
+			
 		} catch (SQLException e) {
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{
+			if(rs !=null) {
+				try {
+					rs.close();
+				}catch(SQLException e) {
+					new DAOException("ERROR CLOSE RS querycliente", e);
+				}
+			}
 			if(ps !=null) {
 				try {
-					cn.rollback();
-					cn.close();
 					ps.close();
 				} catch (SQLException e) {
 					throw new DAOException("ERROR EN SQL closePSCliente", e);
 				}
 			}
 		}
-		return false;
 	}
 
 	@Override
-	public boolean updateCliente(Clientes cliente) throws DAOException  {
+	public void updateCliente(Clientes cliente) throws DAOException  {
 		PreparedStatement ps = null;
-		cn = Connections.getConnection();
+		
 		try { 
-
 			ps = cn.prepareStatement(UPDATE);
-			
 			ps.setString(1, cliente.getNombre());
 			ps.setString(2, cliente.getApellido());
 			ps.setString(3, cliente.getDni());
 			ps.setString(4, cliente.getCuit());
 			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
 			ps.setString(6, cliente.getEmail());
-			
-			if(ps.executeUpdate() == 0) {
-			
-				throw new DAOException("FALLO EN MODIFICAR SQL cliente");
-			}
-		
+			ps.executeUpdate();
+					
 		} catch (SQLException e) {
 			throw new DAOException("EROOR EN SQL UPCliente", e);
 		}
@@ -97,25 +84,22 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 			if(ps !=null) {
 				try {
 					ps.close();
-					cn.close();
 				} catch (SQLException e) {
 					throw new DAOException("ERROR EN SQL closePSCliente", e);
 				}
 			}
 		}
-		return false;
 	}
 
 	@Override
-	public boolean deleteCliente(Clientes cliente) throws DAOException  {
+	public void deleteCliente(Clientes cliente, Connection cn) throws DAOException  {
 		PreparedStatement ps = null;
-		cn = Connections.getConnection();
+		
 		try {
 			ps = cn.prepareStatement(DELETE);
 			ps.setLong(1, cliente.getIdCliente());
-			if(ps.executeUpdate() == 0) {
-				throw new DAOException("FALLO EN BORRRAR SQL cliente");
-			}	
+			ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
@@ -123,13 +107,11 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 			if(ps !=null) {
 				try {
 					ps.close();
-					cn.close();
 				} catch (SQLException e) {
 					throw new DAOException("ERROR EN SQL closePSCliente", e);
 				}
 			}
 		}
-		return false;
 	}
 	
     private Clientes Convertir(ResultSet rs) throws SQLException {
@@ -150,11 +132,10 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 	@Override
 	
     public Clientes queryCliente(int Id) throws DAOException  {
-
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		cn = Connections.getConnection();
 		Clientes cliente = new Clientes();
+		
 	try {
 		ps= cn.prepareStatement(GETONE);
 		ps.setInt(1, Id);
@@ -177,13 +158,11 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 		}if(ps !=null) {
 			try {
 				ps.close();
-				cn.close();
 			} catch (SQLException e) {
 				new DAOException("ERROR CLOSE PS querycliente", e);
 			}
 		}
 	}
-		
 		return cliente;
 	}
 	
@@ -191,8 +170,8 @@ public class ClienteDAOImpSQL implements ClienteDAO {
     public List<Clientes> getAllClientes() throws DAOException  {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		cn = Connections.getConnection();
 		List<Clientes> cliente = new ArrayList<>();
+		
 	try {
 		ps= cn.prepareStatement(GETALL);
 		rs = ps.executeQuery();
@@ -212,34 +191,12 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 		}if(ps !=null) {
 			try {
 				ps.close();
-				cn.close();
 			} catch (SQLException e) {
 				new DAOException("ERROR CLOSE PS querycliente", e);
 			}
 		}
 	}
-		
 		return cliente;
 	}
 
-public static void main ( String [] args) throws DAOException, FileNotFoundException, IOException, SQLException {
-	ClienteDAO clienteDAO;
-	clienteDAO = ClienteFactory.getClienteDAO("Sql");
-		
-		  List<Clientes> clientes = clienteDAO.getAllClientes();
-		  TelefonoDAO tel;
-			tel = TelefonoFactory.getTelefonoDAO("Sql");
-				
-				  //List<Telefonos> telefono = tel.getAllTelefonos();
-		  //for (Clientes a :
-		  //clientes) { System.out.print(a.toString()); }
-		 
-		
-		  LocalDate ahora = LocalDate.now(); Clientes client = new Clientes
-		  ("agustin","camrota","231","235","ds",ahora, null ,null, null, null, null);
-		  Telefonos d = new Telefonos("311313","134342", "342424", null);
-		  client.setTelefono(d);
-		  clienteDAO.addCliente(client);
-		 
-}
 }

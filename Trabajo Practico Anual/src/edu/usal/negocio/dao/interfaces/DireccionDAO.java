@@ -1,14 +1,18 @@
 package edu.usal.negocio.dao.interfaces;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
+import edu.usal.negocio.dominio.Clientes;
 import edu.usal.negocio.dominio.Direcciones;
+import edu.usal.util.DAOException;
 
 
 public interface DireccionDAO {
-	public boolean addDireccion(Direcciones direccion);
-	public boolean updateDireccion(long Id, Direcciones direccion);
-	public boolean deleteDireccion(long Id);
-	public Direcciones queryDireccion(long Id);
-	public List<Direcciones> getAllDirecciones();
+	public void addDireccion(Clientes cliente, Connection cn) throws SQLException, DAOException;
+	public void updateDireccion(Clientes cliente) throws DAOException;
+	public void deleteDireccion(Clientes cliente, Connection cn) throws DAOException;
+	public Direcciones queryDireccion(int Id) throws DAOException;
+	public List<Direcciones> getAllDirecciones() throws DAOException;
 }

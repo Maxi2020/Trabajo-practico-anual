@@ -1,27 +1,36 @@
 package edu.usal.negocio.dao.implementacion;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Hashtable;
-import java.util.Scanner;
-
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 import edu.usal.negocio.dao.interfaces.AerolineaDAO;
-import edu.usal.util.PropertiesUtil;
+import edu.usal.negocio.dominio.Aerolineas;
+import edu.usal.util.DAOException;
 
 public class AerolineaDAOImplFileString implements AerolineaDAO {
-		private File file;
-		private Scanner scanner;
-	@Override
-	public Hashtable<Integer, String> leerAerolineas() throws FileNotFoundException, IOException {
 
-				file = new File(PropertiesUtil.getPathTxt(), PropertiesUtil.getAllAerolineas());
-				scanner= new Scanner(file);
-				Hashtable<Integer, String> list = new Hashtable<Integer, String>();
-				while (scanner.hasNextLine()){
-					String[] straux = scanner.nextLine().split(",");		
-					list.put(Integer.valueOf(straux[0]), straux[1]);
-				}
-				return list;
+	@Override
+	public void addAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void updateAerolinea(Aerolineas aerolinea) throws DAOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Aerolineas> getAllAerolineas() throws DAOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

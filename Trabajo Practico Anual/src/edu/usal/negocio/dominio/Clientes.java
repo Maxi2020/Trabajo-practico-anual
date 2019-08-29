@@ -10,11 +10,11 @@ public  class Clientes implements Serializable {
 	private static final long serialVersionUID = 1L;
 private String nombre, apellido, dni, cuit, email;
 private LocalDate fechaNacimiento;
-private Long idCliente;
-private Pasaportes pasaporte=null;
-private Telefonos telefono=null;
-private PasajerosFrecuentes pasajerofrecuente=null;
-private Direcciones direccion=null;
+private Long idCliente = null;
+private Pasaportes pasaporte;
+private Telefonos telefono;
+private PasajerosFrecuentes pasajerofrecuente;
+private Direcciones direccion;
 
 public Clientes () {}
 
@@ -126,8 +126,8 @@ public void setDireccion(Direcciones direccion) {
 @Override
 public String toString() {
 	return "Clientes [nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cuit=" + cuit + ", email="
-			+ email + ", fechaNacimiento=" + fechaNacimiento + ", idCliente=" + idCliente + ", pasaporte=" + pasaporte
-			+ ", telefono=" + telefono + ", pasajerofrecuente=" + pasajerofrecuente + ", direccion=" + direccion + "]";
+			+ email + ", fechaNacimiento=" + fechaNacimiento + ", idCliente=" + idCliente + ", pasaporte=" + pasaporte.toString()
+			+ ", telefono=" + telefono.toString() + ", pasajerofrecuente=" + pasajerofrecuente.toString() + ", direccion=" + direccion.toString() + "]";
 }
 
 }

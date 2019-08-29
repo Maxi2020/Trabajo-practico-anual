@@ -9,9 +9,9 @@ import edu.usal.negocio.dominio.Telefonos;
 import edu.usal.util.DAOException;
 
 public interface TelefonoDAO {
-	public boolean addTelefono(Clientes cliente, Connection cn) throws DAOException, SQLException;
-	public boolean updateTelefono(Clientes cliente, Connection cn) throws DAOException;
-	public boolean deleteTelefono(Clientes cliente, Connection cn) throws DAOException;
+	public void addTelefono(Clientes cliente, Connection cn) throws DAOException, SQLException;
+	public void updateTelefono(Clientes cliente) throws DAOException;
+	public void deleteTelefono(Clientes cliente, Connection cn) throws DAOException;
 	public Telefonos queryTelefono(int Id) throws DAOException;
 	public List<Telefonos> getAllTelefonos() throws DAOException;
 }

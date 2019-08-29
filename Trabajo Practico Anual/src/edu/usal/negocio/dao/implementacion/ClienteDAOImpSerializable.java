@@ -1,6 +1,7 @@
 package edu.usal.negocio.dao.implementacion;
 
 import java.io.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import edu.usal.negocio.dao.interfaces.ClienteDAO;
@@ -18,39 +19,33 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
 	
  
 	@Override
-	public boolean addCliente(Clientes cliente) throws FileNotFoundException, IOException {
+	public void addCliente(Clientes cliente, Connection cn) throws FileNotFoundException, IOException {
 		List<Clientes> listado = this.getAllClientes();
 		listado.add(cliente);
 		this.saveAllClientes(listado);
-		return true;
 	}
 
 	@Override
-	public boolean updateCliente(Clientes cliente) throws FileNotFoundException, IOException {
+	public void updateCliente(Clientes cliente) throws FileNotFoundException, IOException {
 		List<Clientes> listado = this.getAllClientes();
 		for(Clientes clientes : listado) {
 			if(clientes.getIdCliente() == cliente.getIdCliente()) {
 				listado.remove(clientes);
 				listado.add(cliente);
 				this.saveAllClientes(listado);
-				return true;
 			}
 		}
-		return false;
 	}
 
 	@Override
-	public boolean deleteCliente(Clientes clientes) throws FileNotFoundException, IOException {
+	public void deleteCliente(Clientes clientes, Connection cn) throws FileNotFoundException, IOException {
 		List<Clientes> listado = this.getAllClientes();
 		for(Clientes cliente : listado) {
 			if(cliente.getIdCliente() == clientes.getIdCliente()) {
 				listado.remove(clientes);
 				this.saveAllClientes(listado);
-				return true;
 			}
 		}
-	   return false;
-		
 	}
 
 	@Override

@@ -10,12 +10,12 @@ public class Direcciones implements Serializable {
 private String calle, altura, ciudad, codigoPostal;
 private Paises pais;
 private Provincias provincia;
-private int idPais, idProvincia, idDireccion, idCliente;
+private Long idDireccion = null;
 
 public Direcciones () {}
 
 public Direcciones(String calle, String altura, String ciudad, String codigoPostal, Paises pais, Provincias provincia,
-		int idPais, int idProvincia, int idDireccion, int idCliente) {
+		Long idDireccion) {
 	super();
 	this.calle = calle;
 	this.altura = altura;
@@ -23,10 +23,7 @@ public Direcciones(String calle, String altura, String ciudad, String codigoPost
 	this.codigoPostal = codigoPostal;
 	this.pais = pais;
 	this.provincia = provincia;
-	this.idPais = idPais;
-	this.idProvincia = idProvincia;
 	this.idDireccion = idDireccion;
-	this.idCliente = idCliente;
 }
 
 public String getCalle() {
@@ -77,43 +74,18 @@ public void setProvincia(Provincias provincia) {
 	this.provincia = provincia;
 }
 
-public int getIdPais() {
-	return idPais;
-}
-
-public void setIdPais(int idPais) {
-	this.idPais = idPais;
-}
-
-public int getIdProvincia() {
-	return idProvincia;
-}
-
-public void setIdProvincia(int idProvincia) {
-	this.idProvincia = idProvincia;
-}
-
-public int getIdDireccion() {
+public Long getIdDireccion() {
 	return idDireccion;
 }
 
-public void setIdDireccion(int idDireccion) {
+public void setIdDireccion(Long idDireccion) {
 	this.idDireccion = idDireccion;
-}
-
-public int getIdCliente() {
-	return idCliente;
-}
-
-public void setIdCliente(int idCliente) {
-	this.idCliente = idCliente;
 }
 
 @Override
 public String toString() {
 	return "Direcciones [calle=" + calle + ", altura=" + altura + ", ciudad=" + ciudad + ", codigoPostal="
-			+ codigoPostal + ", pais=" + pais.toString() + ", provincia=" + provincia.toString() + ", idPais=" + idPais + ", idProvincia="
-			+ idProvincia + ", idDireccion=" + idDireccion + ", idCliente=" + idCliente + "]";
+			+ codigoPostal + ", pais=" + pais.toString() + ", provincia=" + provincia.toString() + ", idDireccion=" + idDireccion + "]";
 }
 
 }

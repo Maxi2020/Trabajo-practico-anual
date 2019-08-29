@@ -2,22 +2,22 @@ package edu.usal.negocio.dominio;
 
 public class Paises {
 	
-	private int idPais;
+	private Long idPais = null;
 	private String nombrePais;
 
 public Paises() {}
 
-public Paises(int idPais, String nombrePais) {
+public Paises(Long idPais, String nombrePais) {
 	super();
 	this.idPais = idPais;
 	this.nombrePais = nombrePais;
 }
 
-public int getIdPais() {
+public Long getIdPais() {
 	return idPais;
 }
 
-public void setIdPais(int idPais) {
+public void setIdPais(Long idPais) {
 	this.idPais = idPais;
 }
 

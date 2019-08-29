@@ -2,22 +2,22 @@ package edu.usal.negocio.dominio;
 
 public class Provincias {
 
-	private int idProvincia;
+	private Long idProvincia = null;
 	private String nombreProvincia;
 	
 public Provincias() {}
 
-public Provincias(int idProvincia, String nombreProvincia) {
+public Provincias(Long idProvincia, String nombreProvincia) {
 	super();
 	this.idProvincia = idProvincia;
 	this.nombreProvincia = nombreProvincia;
 }
 
-public int getIdProvincia() {
+public Long getIdProvincia() {
 	return idProvincia;
 }
 
-public void setIdProvincia(int idProvincia) {
+public void setIdProvincia(Long idProvincia) {
 	this.idProvincia = idProvincia;
 }
 
