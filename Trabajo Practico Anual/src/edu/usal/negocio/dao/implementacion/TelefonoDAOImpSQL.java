@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,35 +26,34 @@ public class TelefonoDAOImpSQL implements TelefonoDAO {
 	@Override
 	public boolean addTelefono(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
-		cn = Connections.getConnection();
-		cn.setAutoCommit(false);
+		ResultSet rs = null;
+		Telefonos telefono = new Telefonos();
+		
 		try { 
-			ps = cn.prepareStatement(INSERT);
+			ps= cn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, cliente.getTelefono().getNumeroPersonal());
 			ps.setString(2, cliente.getTelefono().getNumeroCelular());
 			ps.setString(3, cliente.getTelefono().getNumeroLaboral());
-			ps.setInt(4, cliente.getTelefono().getIdCliente());
-		
-			if(ps.executeUpdate() == 0) {
-				
-				throw new DAOException("FALLO EN AGREGAR SQL cliente");
-			}
+			ps.setLong(4, cliente.getIdCliente());
+			
+			ps.executeUpdate();
+		    rs= ps.getGeneratedKeys();
+		    while(rs.next())
+		    	telefono.setIdTelefono((long) rs.getInt(1));
 
 		} catch (SQLException e) {
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{
 			if(ps !=null) {
-		
 				try {
 					ps.close();
-					cn.close();
 				} catch (SQLException e) {
 					throw new DAOException("ERROR EN SQL closePSCliente", e);
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class TelefonoDAOImpSQL implements TelefonoDAO {
 			ps.setString(1, cliente.getTelefono().getNumeroPersonal());
 			ps.setString(2, cliente.getTelefono().getNumeroCelular());
 			ps.setString(3, cliente.getTelefono().getNumeroLaboral());
-			ps.setInt(4, cliente.getTelefono().getIdCliente());
+			ps.setLong(4, cliente.getIdCliente());
 			
 			if(ps.executeUpdate() == 0) {
 			
@@ -119,9 +119,9 @@ public class TelefonoDAOImpSQL implements TelefonoDAO {
     	String personal = rs.getString("personal");
     	String celular = rs.getString("celular");
     	String laboral = rs.getString("laboral");
-    	int id_cliente = rs.getInt("id_cliente");
+    	Long id_cliente = rs.getLong("id_cliente");
     	
-    	Telefonos telefono = new Telefonos(personal, celular, laboral, id_cliente, null);
+    	Telefonos telefono = new Telefonos(personal, celular, laboral, id_cliente);
     	telefono.setIdTelefono(rs.getLong("id_telefono"));
     	return telefono;
     	

@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,26 +32,27 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 	//@Override
 	public boolean addCliente(Clientes cliente) throws DAOException, SQLException{
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		cn = Connections.getConnection();
 		cn.setAutoCommit(false);
 		telefonoDAO = TelefonoFactory.getTelefonoDAO("Sql");
 		try { 
-			ps = cn.prepareStatement(INSERT);
+			ps= cn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, cliente.getNombre());
 			ps.setString(2, cliente.getApellido());
 			ps.setString(3, cliente.getDni());
 			ps.setString(4, cliente.getCuit());
 			ps.setDate(5, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
 			ps.setString(6, cliente.getEmail());
-			if(ps.executeUpdate() == 0) {
-				ps.close();
-				if(telefonoDAO.addTelefono(cliente, cn)) {
-					cn.commit();
-					cn.close();
-					return true;
-				}
+			
+			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			while(rs.next())
+				cliente.setIdCliente((long) rs.getInt(1));
+			if(telefonoDAO.addTelefono(cliente, cn)) {
+				cn.commit();
+				return true;
 			}
-
 		} catch (SQLException e) {
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
@@ -234,9 +236,8 @@ public static void main ( String [] args) throws DAOException, FileNotFoundExcep
 		 
 		
 		  LocalDate ahora = LocalDate.now(); Clientes client = new Clientes
-		  ("martin","cammarota","231","235","ds",ahora, null ,null, null, null, null);
-		  
-		  Telefonos d = new Telefonos("311313","134342", "342424", 5, null);
+		  ("agustin","camrota","231","235","ds",ahora, null ,null, null, null, null);
+		  Telefonos d = new Telefonos("311313","134342", "342424", null);
 		  client.setTelefono(d);
 		  clienteDAO.addCliente(client);
 		 
