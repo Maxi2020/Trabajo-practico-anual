@@ -40,7 +40,7 @@ public static String getPathVentas()  {
 public static String getFileVentas() {
 	return properties.getProperty("FileVenta");
 }
-public static String getAerolineas()  {
+public static String getPathAerolineas()  {
 	return properties.getProperty("PathAerolineas");
 }
 public static String getFileAerolineas() {

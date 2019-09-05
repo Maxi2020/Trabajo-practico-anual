@@ -42,6 +42,7 @@ public class TelefonoDAOImpSQL implements TelefonoDAO {
 		    	telefono.setIdTelefono((long) rs.getInt(1));
 
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{
@@ -89,15 +90,16 @@ public class TelefonoDAOImpSQL implements TelefonoDAO {
 	}
 
 	@Override
-	public void deleteTelefono(Clientes cliente, Connection cn) throws DAOException {
+	public void deleteTelefono(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
-		
+		cn.setAutoCommit(false);
 		try {
 			ps = cn.prepareStatement(DELETE);
 			ps.setLong(1, cliente.getTelefono().getIdTelefono());
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{

@@ -10,19 +10,17 @@ public class PasajerosFrecuentes implements Serializable {
 	private static final long serialVersionUID = 1L;
 private String numero, categoria, alianza;
 private Aerolineas aerolinea;
-private int idAerolinea, idCliente, idPasajeroFrecuente;
+private Long  idPasajeroFrecuente = null;
 
 public PasajerosFrecuentes() {}
 
-public PasajerosFrecuentes(String numero, String categoria, String alianza, Aerolineas aerolinea, int idAerolinea,
-		int idCliente, int idPasajeroFrecuente) {
+public PasajerosFrecuentes(String numero, String categoria, String alianza, Aerolineas aerolinea,
+		Long idPasajeroFrecuente) {
 	super();
 	this.numero = numero;
 	this.categoria = categoria;
 	this.alianza = alianza;
 	this.aerolinea = aerolinea;
-	this.idAerolinea = idAerolinea;
-	this.idCliente = idCliente;
 	this.idPasajeroFrecuente = idPasajeroFrecuente;
 }
 
@@ -58,35 +56,18 @@ public void setAerolinea(Aerolineas aerolinea) {
 	this.aerolinea = aerolinea;
 }
 
-public int getIdAerolinea() {
-	return idAerolinea;
-}
-
-public void setIdAerolinea(int idAerolinea) {
-	this.idAerolinea = idAerolinea;
-}
-
-public int getIdCliente() {
-	return idCliente;
-}
-
-public void setIdCliente(int idCliente) {
-	this.idCliente = idCliente;
-}
-
-public int getIdPasajeroFrecuente() {
+public Long getIdPasajeroFrecuente() {
 	return idPasajeroFrecuente;
 }
 
-public void setIdPasajeroFrecuente(int idPasajeroFrecuente) {
+public void setIdPasajeroFrecuente(Long idPasajeroFrecuente) {
 	this.idPasajeroFrecuente = idPasajeroFrecuente;
 }
 
 @Override
 public String toString() {
 	return "PasajerosFrecuentes [numero=" + numero + ", categoria=" + categoria + ", alianza=" + alianza
-			+ ", aerolinea=" + aerolinea.toString() + ", idAerolinea=" + idAerolinea + ", idCliente=" + idCliente
-			+ ", idPasajeroFrecuente=" + idPasajeroFrecuente + "]";
+			+ ", aerolinea=" + aerolinea.toString() + ", idPasajeroFrecuente=" + idPasajeroFrecuente + "]";
 }
 
 }

@@ -15,7 +15,7 @@ public interface PaisDAO {
 	public Hashtable<Integer,String> leerPaises()throws FileNotFoundException, IOException;
 	public void addPais(Clientes cliente, Connection cn) throws DAOException, SQLException;
 	public void updatePais(Clientes cliente) throws DAOException;
-	public void deletePais(Clientes cliente, Connection cn) throws DAOException;
+	public void deletePais(Clientes cliente, Connection cn) throws DAOException, SQLException;
 	public Paises queryPais(int Id) throws DAOException;
 	public List<Paises> getAllPaises() throws DAOException;
 }

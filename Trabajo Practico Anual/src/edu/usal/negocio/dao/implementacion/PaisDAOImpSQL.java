@@ -45,6 +45,7 @@ public class PaisDAOImpSQL implements PaisDAO {
 		    	pais.setIdPais((long) rs.getInt(1));
 
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{
@@ -91,8 +92,9 @@ public class PaisDAOImpSQL implements PaisDAO {
 	}
 
 	@Override
-	public void deletePais(Clientes cliente, Connection cn) throws DAOException {
+	public void deletePais(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
+		cn.setAutoCommit(false);
 		
 		try {
 			ps = cn.prepareStatement(DELETE);
@@ -100,6 +102,7 @@ public class PaisDAOImpSQL implements PaisDAO {
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{

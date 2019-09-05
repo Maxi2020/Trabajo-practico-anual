@@ -1,8 +1,8 @@
 package edu.usal.negocio.dominio;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Vuelos implements Serializable {
 	
@@ -10,31 +10,31 @@ public class Vuelos implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String numeroVuelo, tiempoVuelo;
-	private int idVuelo, idAeropuertoSalida, idAeropuertoLlegada, idAerolinea, cantidadAsientos;
+	private String numeroVuelo, tiempoVuelo, cantidadAsientos;
+	private Long idVuelo=null;
 	private Aeropuertos aeropuertoSalida;
 	private Aeropuertos aeropuertoLlegada;
 	private Aerolineas aerolinea;
-	private LocalDateTime fechaHoraSalida, fechaHoraLlegada;
+	private LocalDate fechaSalida, fechaLlegada;
+	private LocalTime horaSalida, horaLLegada;
 	
 public Vuelos() {}
 
-public Vuelos(String numeroVuelo, String tiempoVuelo, int idVuelo, int idAeropuertoSalida, int idAeropuertoLlegada,
-		int idAerolinea, int cantidadAsientos, Aeropuertos aeropuertoSalida, Aeropuertos aeropuertoLlegada,
-		Aerolineas aerolinea, LocalDateTime fechaHoraSalida, LocalDateTime fechaHoraLlegada) {
+public Vuelos(String numeroVuelo, String tiempoVuelo, String cantidadAsientos, Long idVuelo,
+		Aeropuertos aeropuertoSalida, Aeropuertos aeropuertoLlegada, Aerolineas aerolinea, LocalDate fechaSalida,
+		LocalDate fechaLlegada, LocalTime horaSalida, LocalTime horaLLegada) {
 	super();
 	this.numeroVuelo = numeroVuelo;
 	this.tiempoVuelo = tiempoVuelo;
-	this.idVuelo = idVuelo;
-	this.idAeropuertoSalida = idAeropuertoSalida;
-	this.idAeropuertoLlegada = idAeropuertoLlegada;
-	this.idAerolinea = idAerolinea;
 	this.cantidadAsientos = cantidadAsientos;
+	this.idVuelo = idVuelo;
 	this.aeropuertoSalida = aeropuertoSalida;
 	this.aeropuertoLlegada = aeropuertoLlegada;
 	this.aerolinea = aerolinea;
-	this.fechaHoraSalida = fechaHoraSalida;
-	this.fechaHoraLlegada = fechaHoraLlegada;
+	this.fechaSalida = fechaSalida;
+	this.fechaLlegada = fechaLlegada;
+	this.horaSalida = horaSalida;
+	this.horaLLegada = horaLLegada;
 }
 
 public String getNumeroVuelo() {
@@ -53,44 +53,20 @@ public void setTiempoVuelo(String tiempoVuelo) {
 	this.tiempoVuelo = tiempoVuelo;
 }
 
-public int getIdVuelo() {
-	return idVuelo;
-}
-
-public void setIdVuelo(int idVuelo) {
-	this.idVuelo = idVuelo;
-}
-
-public int getIdAeropuertoSalida() {
-	return idAeropuertoSalida;
-}
-
-public void setIdAeropuertoSalida(int idAeropuertoSalida) {
-	this.idAeropuertoSalida = idAeropuertoSalida;
-}
-
-public int getIdAeropuertoLlegada() {
-	return idAeropuertoLlegada;
-}
-
-public void setIdAeropuertoLlegada(int idAeropuertoLlegada) {
-	this.idAeropuertoLlegada = idAeropuertoLlegada;
-}
-
-public int getIdAerolinea() {
-	return idAerolinea;
-}
-
-public void setIdAerolinea(int idAerolinea) {
-	this.idAerolinea = idAerolinea;
-}
-
-public int getCantidadAsientos() {
+public String getCantidadAsientos() {
 	return cantidadAsientos;
 }
 
-public void setCantidadAsientos(int cantidadAsientos) {
+public void setCantidadAsientos(String cantidadAsientos) {
 	this.cantidadAsientos = cantidadAsientos;
+}
+
+public Long getIdVuelo() {
+	return idVuelo;
+}
+
+public void setIdVuelo(Long idVuelo) {
+	this.idVuelo = idVuelo;
 }
 
 public Aeropuertos getAeropuertoSalida() {
@@ -117,29 +93,46 @@ public void setAerolinea(Aerolineas aerolinea) {
 	this.aerolinea = aerolinea;
 }
 
-public LocalDateTime getFechaHoraSalida() {
-	return fechaHoraSalida;
+public LocalDate getFechaSalida() {
+	return fechaSalida;
 }
 
-public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
-	this.fechaHoraSalida = fechaHoraSalida;
+public void setFechaSalida(LocalDate fechaSalida) {
+	this.fechaSalida = fechaSalida;
 }
 
-public LocalDateTime getFechaHoraLlegada() {
-	return fechaHoraLlegada;
+public LocalDate getFechaLlegada() {
+	return fechaLlegada;
 }
 
-public void setFechaHoraLlegada(LocalDateTime fechaHoraLlegada) {
-	this.fechaHoraLlegada = fechaHoraLlegada;
+public void setFechaLlegada(LocalDate fechaLlegada) {
+	this.fechaLlegada = fechaLlegada;
+}
+
+public LocalTime getHoraSalida() {
+	return horaSalida;
+}
+
+public void setHoraSalida(LocalTime horaSalida) {
+	this.horaSalida = horaSalida;
+}
+
+public LocalTime getHoraLLegada() {
+	return horaLLegada;
+}
+
+public void setHoraLLegada(LocalTime horaLLegada) {
+	this.horaLLegada = horaLLegada;
 }
 
 @Override
 public String toString() {
-	return "Vuelos [numeroVuelo=" + numeroVuelo + ", tiempoVuelo=" + tiempoVuelo + ", idVuelo=" + idVuelo
-			+ ", idAeropuertoSalida=" + idAeropuertoSalida + ", idAeropuertoLlegada=" + idAeropuertoLlegada
-			+ ", idAerolinea=" + idAerolinea + ", cantidadAsientos=" + cantidadAsientos + ", aeropuertoSalida="
-			+ aeropuertoSalida.toString() + ", aeropuertoLlegada=" + aeropuertoLlegada.toString() + ", aerolinea=" + aerolinea.toString()
-			+ ", fechaHoraSalida=" + fechaHoraSalida + ", fechaHoraLlegada=" + fechaHoraLlegada + "]";
+	return "Vuelos [numeroVuelo=" + numeroVuelo + ", tiempoVuelo=" + tiempoVuelo + ", cantidadAsientos="
+			+ cantidadAsientos + ", idVuelo=" + idVuelo + ", aeropuertoSalida=" + aeropuertoSalida.toString()
+			+ ", aeropuertoLlegada=" + aeropuertoLlegada.toString() + ", aerolinea=" + aerolinea.toString() + ", fechaSalida=" + fechaSalida
+			+ ", fechaLlegada=" + fechaLlegada + ", horaSalida=" + horaSalida + ", horaLLegada=" + horaLLegada + "]";
 }
+
+
 
 }

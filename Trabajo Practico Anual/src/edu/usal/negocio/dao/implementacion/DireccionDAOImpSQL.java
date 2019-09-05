@@ -44,6 +44,7 @@ public class DireccionDAOImpSQL implements DireccionDAO{
 		    	direccion.setIdDireccion((long) rs.getInt(1));
 
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{
@@ -93,8 +94,9 @@ public class DireccionDAOImpSQL implements DireccionDAO{
 	}
 
 	@Override
-	public void deleteDireccion(Clientes cliente, Connection cn) throws DAOException {
+	public void deleteDireccion(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
+		cn.setAutoCommit(false);
 		
 		try {
 			ps = cn.prepareStatement(DELETE);
@@ -102,6 +104,7 @@ public class DireccionDAOImpSQL implements DireccionDAO{
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{

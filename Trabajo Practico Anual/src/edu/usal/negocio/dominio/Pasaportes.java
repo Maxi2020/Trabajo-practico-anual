@@ -13,20 +13,18 @@ public class Pasaportes implements Serializable {
 private String numeroPasaporte, autoridadEmision;
 private LocalDate fechaEmision, fechaVencimiento;
 private Paises pais;
-private int idPais, idCliente, idPasaporte;
+private Long idPasaporte = null;
 
 public Pasaportes() {}
 
 public Pasaportes(String numeroPasaporte, String autoridadEmision, LocalDate fechaEmision, LocalDate fechaVencimiento,
-		Paises pais, int idPais, int idCliente, int idPasaporte) {
+		Paises pais, Long idPasaporte) {
 	super();
 	this.numeroPasaporte = numeroPasaporte;
 	this.autoridadEmision = autoridadEmision;
 	this.fechaEmision = fechaEmision;
 	this.fechaVencimiento = fechaVencimiento;
 	this.pais = pais;
-	this.idPais = idPais;
-	this.idCliente = idCliente;
 	this.idPasaporte = idPasaporte;
 }
 
@@ -70,27 +68,11 @@ public void setPais(Paises pais) {
 	this.pais = pais;
 }
 
-public int getIdPais() {
-	return idPais;
-}
-
-public void setIdPais(int idPais) {
-	this.idPais = idPais;
-}
-
-public int getIdCliente() {
-	return idCliente;
-}
-
-public void setIdCliente(int idCliente) {
-	this.idCliente = idCliente;
-}
-
-public int getIdPasaporte() {
+public Long getIdPasaporte() {
 	return idPasaporte;
 }
 
-public void setIdPasaporte(int idPasaporte) {
+public void setIdPasaporte(Long idPasaporte) {
 	this.idPasaporte = idPasaporte;
 }
 
@@ -98,7 +80,7 @@ public void setIdPasaporte(int idPasaporte) {
 public String toString() {
 	return "Pasaportes [numeroPasaporte=" + numeroPasaporte + ", autoridadEmision=" + autoridadEmision
 			+ ", fechaEmision=" + fechaEmision + ", fechaVencimiento=" + fechaVencimiento + ", pais=" + pais.toString()
-			+ ", idPais=" + idPais + ", idCliente=" + idCliente + ", idPasaporte=" + idPasaporte + "]";
+			+ ", idPasaporte=" + idPasaporte + "]";
 }
 
 }

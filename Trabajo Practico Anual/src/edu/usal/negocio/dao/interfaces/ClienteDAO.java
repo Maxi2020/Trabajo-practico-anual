@@ -9,7 +9,7 @@ import edu.usal.util.DAOException;
 public interface ClienteDAO {
 public void addCliente(Clientes cliente, Connection cn) throws IOException, DAOException, SQLException;
 public void updateCliente(Clientes cliente) throws FileNotFoundException, IOException, DAOException;
-public void deleteCliente(Clientes cliente, Connection cn) throws FileNotFoundException, IOException, DAOException;
+public void deleteCliente(Clientes cliente, Connection cn) throws FileNotFoundException, IOException, DAOException, SQLException;
 public Clientes queryCliente(int Id) throws FileNotFoundException, IOException, DAOException;
 public List<Clientes> getAllClientes() throws FileNotFoundException, IOException, DAOException;
 

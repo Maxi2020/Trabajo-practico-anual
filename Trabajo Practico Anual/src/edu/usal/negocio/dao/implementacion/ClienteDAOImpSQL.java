@@ -38,11 +38,13 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 			ps.setString(6, cliente.getEmail());
 			ps.executeUpdate();
 			ps.getGeneratedKeys();
+			cn.commit();
 			
 			while(rs.next())
 				cliente.setIdCliente((long) rs.getInt(1));
 			
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{
@@ -92,15 +94,18 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 	}
 
 	@Override
-	public void deleteCliente(Clientes cliente, Connection cn) throws DAOException  {
+	public void deleteCliente(Clientes cliente, Connection cn) throws DAOException, SQLException  {
 		PreparedStatement ps = null;
+		cn.setAutoCommit(false);
 		
 		try {
 			ps = cn.prepareStatement(DELETE);
 			ps.setLong(1, cliente.getIdCliente());
 			ps.executeUpdate();
+			cn.commit();
 			
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{

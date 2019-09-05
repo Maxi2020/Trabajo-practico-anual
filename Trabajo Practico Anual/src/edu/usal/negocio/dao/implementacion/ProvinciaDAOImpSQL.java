@@ -40,11 +40,11 @@ public class ProvinciaDAOImpSQL implements ProvinciaDAO{
 			ps.setString(1, cliente.getDireccion().getProvincia().getNombreProvincia());
 			ps.executeUpdate();
 		    rs= ps.getGeneratedKeys();
-		    
 		    while(rs.next())
 		    	provincia.setIdProvincia((long) rs.getInt(1));
 
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{
@@ -90,8 +90,9 @@ public class ProvinciaDAOImpSQL implements ProvinciaDAO{
 	}
 
 	@Override
-	public void deleteProvincia(Clientes cliente, Connection cn) throws DAOException {
+	public void deleteProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
+		cn.setAutoCommit(false);
 		
 		try {
 			ps = cn.prepareStatement(DELETE);
@@ -99,6 +100,7 @@ public class ProvinciaDAOImpSQL implements ProvinciaDAO{
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
+			cn.rollback();
 			throw new DAOException("EROOR EN SQL addCliente", e);
 		}
 		finally{
