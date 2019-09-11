@@ -38,7 +38,7 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 			ps.setString(6, cliente.getEmail());
 			ps.executeUpdate();
 			ps.getGeneratedKeys();
-			while(rs.next())
+			while(rs.next()) 
 				cliente.setIdCliente((long) rs.getInt(1));
 			cn.commit();
 			
