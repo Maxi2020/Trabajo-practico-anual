@@ -32,7 +32,8 @@ public class PaisDAOImplFileString implements PaisDAO {
 	}
 
 	@Override
-	public void addPais(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean addPais(Clientes cliente, Connection cn) throws DAOException, SQLException {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
@@ -44,7 +45,8 @@ public class PaisDAOImplFileString implements PaisDAO {
 	}
 
 	@Override
-	public void deletePais(Clientes cliente, Connection cn) throws DAOException {
+	public boolean deletePais(Clientes cliente, Connection cn) throws DAOException {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}

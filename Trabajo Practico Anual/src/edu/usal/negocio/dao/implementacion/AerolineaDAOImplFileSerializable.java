@@ -26,10 +26,11 @@ public class AerolineaDAOImplFileSerializable implements AerolineaDAO {
 	
 
 	@Override
-	public void addAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException, IOException {
+	public boolean addAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException, IOException {
 		List<Aerolineas> listado = this.getAllAerolineas();
 		listado.add(aerolinea);
 		this.saveAllAerolineas(listado);
+		return true;
 	}
 
 	private void saveAllAerolineas(List<Aerolineas> listado) throws IOException {
@@ -53,14 +54,16 @@ public class AerolineaDAOImplFileSerializable implements AerolineaDAO {
 	}
 
 	@Override
-	public void deleteAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, IOException {
+	public boolean deleteAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, IOException {
 		List<Aerolineas> listado = this.getAllAerolineas();
 		for(Aerolineas aerolineas : listado) {
 			if(aerolineas.getIdAerolinea() == aerolinea.getIdAerolinea()) {
 				listado.remove(aerolineas);
 				this.saveAllAerolineas(listado);
+				return true;
 			}
 		}
+		return false;
 	}
 
 	@Override

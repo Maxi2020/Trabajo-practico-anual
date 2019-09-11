@@ -8,9 +8,9 @@ import edu.usal.negocio.dominio.Aerolineas;
 import edu.usal.util.DAOException;
 
 public interface AerolineaDAO {
-	public void addAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException, IOException;
+	public boolean addAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException, IOException;
 	public void updateAerolinea(Aerolineas aerolinea) throws DAOException, IOException;
-	public void deleteAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException, IOException;
+	public boolean deleteAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException, IOException;
 	public Aerolineas queryAerolinea(int Id) throws DAOException, IOException;
 	public List<Aerolineas> getAllAerolineas() throws DAOException, IOException;
 }

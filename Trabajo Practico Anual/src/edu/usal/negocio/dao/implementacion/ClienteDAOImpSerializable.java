@@ -19,10 +19,11 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
 	
  
 	@Override
-	public void addCliente(Clientes cliente, Connection cn) throws FileNotFoundException, IOException {
+	public boolean addCliente(Clientes cliente, Connection cn) throws FileNotFoundException, IOException {
 		List<Clientes> listado = this.getAllClientes();
 		listado.add(cliente);
 		this.saveAllClientes(listado);
+		return true;
 	}
 
 	@Override
@@ -38,14 +39,16 @@ public class ClienteDAOImpSerializable implements ClienteDAO {
 	}
 
 	@Override
-	public void deleteCliente(Clientes clientes, Connection cn) throws FileNotFoundException, IOException {
+	public boolean deleteCliente(Clientes clientes, Connection cn) throws FileNotFoundException, IOException {
 		List<Clientes> listado = this.getAllClientes();
 		for(Clientes cliente : listado) {
 			if(cliente.getIdCliente() == clientes.getIdCliente()) {
 				listado.remove(clientes);
 				this.saveAllClientes(listado);
+				return true;
 			}
 		}
+		return false;
 	}
 
 	@Override

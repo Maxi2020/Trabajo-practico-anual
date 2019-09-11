@@ -29,7 +29,7 @@ public class ProvinciaDAOImpSQL implements ProvinciaDAO{
 	}
 
 	@Override
-	public void addProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean addProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		cn.setAutoCommit(false);
@@ -63,6 +63,7 @@ public class ProvinciaDAOImpSQL implements ProvinciaDAO{
 				}
 			}
 		}
+		return true;
 	}
 
 	@Override
@@ -90,7 +91,7 @@ public class ProvinciaDAOImpSQL implements ProvinciaDAO{
 	}
 
 	@Override
-	public void deleteProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean deleteProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		cn.setAutoCommit(false);
 		
@@ -112,6 +113,7 @@ public class ProvinciaDAOImpSQL implements ProvinciaDAO{
 				}
 			}
 		}
+		return true;
 	}
 
 	private Provincias Convertir(ResultSet rs) throws SQLException {

@@ -23,7 +23,7 @@ public class PasaporteDAOImpSQL implements PasaporteDAO{
 	final String GETONE = "SELECT id_pasaporte, numero_pasaporte, autoridad_emision, fecha_emision, fecha_vencimiento, id_pais, id_cliente FROM telefonos WHERE id_telefono=?";
 	
 	@Override
-	public void addPasaporte(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean addPasaporte(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		cn.setAutoCommit(false);
@@ -63,6 +63,7 @@ public class PasaporteDAOImpSQL implements PasaporteDAO{
 				}
 			}
 		}
+		return true;
 	}
 
 	@Override
@@ -93,7 +94,7 @@ public class PasaporteDAOImpSQL implements PasaporteDAO{
 	}
 
 	@Override
-	public void deletePasaporte(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean deletePasaporte(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		cn.setAutoCommit(false);
 		
@@ -115,6 +116,7 @@ public class PasaporteDAOImpSQL implements PasaporteDAO{
 				}
 			}
 		}
+		return true;
 	}
 
 	private Pasaportes Convertir(ResultSet rs) throws SQLException {

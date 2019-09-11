@@ -24,7 +24,7 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 	
 
 	//@Override
-	public void addCliente(Clientes cliente, Connection cn) throws DAOException, SQLException{
+	public boolean addCliente(Clientes cliente, Connection cn) throws DAOException, SQLException{
 		PreparedStatement ps = null;
 		cn.setAutoCommit(false);
 		
@@ -38,10 +38,9 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 			ps.setString(6, cliente.getEmail());
 			ps.executeUpdate();
 			ps.getGeneratedKeys();
-			cn.commit();
-			
 			while(rs.next())
 				cliente.setIdCliente((long) rs.getInt(1));
+			cn.commit();
 			
 		} catch (SQLException e) {
 			cn.rollback();
@@ -63,6 +62,7 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 				}
 			}
 		}
+		return true;
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 	}
 
 	@Override
-	public void deleteCliente(Clientes cliente, Connection cn) throws DAOException, SQLException  {
+	public boolean deleteCliente(Clientes cliente, Connection cn) throws DAOException, SQLException  {
 		PreparedStatement ps = null;
 		cn.setAutoCommit(false);
 		
@@ -117,6 +117,7 @@ public class ClienteDAOImpSQL implements ClienteDAO {
 				}
 			}
 		}
+		return true;
 	}
 	
     private Clientes Convertir(ResultSet rs) throws SQLException {

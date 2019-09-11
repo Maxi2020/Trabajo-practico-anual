@@ -23,7 +23,7 @@ public class TelefonoDAOImpSQL implements TelefonoDAO {
 	final String GETONE = "SELECT id_telefono, personal, celular, laboral, id_cliente FROM telefonos WHERE id_telefono=?";
 
 	@Override
-	public void addTelefono(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean addTelefono(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		cn.setAutoCommit(false);
@@ -61,6 +61,7 @@ public class TelefonoDAOImpSQL implements TelefonoDAO {
 				}
 			}
 		}
+		return true;
 	}
 
 	@Override
@@ -90,7 +91,7 @@ public class TelefonoDAOImpSQL implements TelefonoDAO {
 	}
 
 	@Override
-	public void deleteTelefono(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean deleteTelefono(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		cn.setAutoCommit(false);
 		try {
@@ -111,6 +112,7 @@ public class TelefonoDAOImpSQL implements TelefonoDAO {
 				}
 			}
 		}
+		return true;
 	}
     
 	private Telefonos Convertir(ResultSet rs) throws SQLException {

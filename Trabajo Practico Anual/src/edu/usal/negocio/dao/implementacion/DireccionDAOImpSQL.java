@@ -22,7 +22,7 @@ public class DireccionDAOImpSQL implements DireccionDAO{
 	final String GETONE = "SELECT id_direccion, calle, altura, ciudad, codigo_postal, id_pais, id_cliente, id_provincia FROM direcciones WHERE id_direccion=?";
 
 	@Override
-	public void addDireccion(Clientes cliente, Connection cn) throws SQLException, DAOException {
+	public boolean addDireccion(Clientes cliente, Connection cn) throws SQLException, DAOException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		cn.setAutoCommit(false);
@@ -63,6 +63,7 @@ public class DireccionDAOImpSQL implements DireccionDAO{
 				}
 			}
 		}
+		return true;
 }
 	
 	@Override
@@ -94,7 +95,7 @@ public class DireccionDAOImpSQL implements DireccionDAO{
 	}
 
 	@Override
-	public void deleteDireccion(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean deleteDireccion(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		cn.setAutoCommit(false);
 		
@@ -116,6 +117,7 @@ public class DireccionDAOImpSQL implements DireccionDAO{
 				}
 			}
 		}
+		return true;
 	}
 	
 	private Direcciones Convertir(ResultSet rs) throws SQLException {

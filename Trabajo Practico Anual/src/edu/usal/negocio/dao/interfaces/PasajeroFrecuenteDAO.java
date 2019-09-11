@@ -9,9 +9,9 @@ import edu.usal.util.DAOException;
 
 
 public interface PasajeroFrecuenteDAO {
-	public void addPasajeroFrecuente(Clientes cliente, Connection cn) throws SQLException, DAOException;
+	public boolean addPasajeroFrecuente(Clientes cliente, Connection cn) throws SQLException, DAOException;
 	public void updatePasajeroFrecuente(Clientes cliente) throws DAOException;
-	public void deletePasajeroFrecuente(Clientes cliente, Connection cn) throws DAOException, SQLException;
+	public boolean deletePasajeroFrecuente(Clientes cliente, Connection cn) throws DAOException, SQLException;
 	public PasajerosFrecuentes queryPasajeroFrecuente(int Id) throws DAOException;
 	public List<PasajerosFrecuentes> getAllPasajerosFrecuentes() throws DAOException;
 }

@@ -15,14 +15,14 @@ import edu.usal.util.DAOException;
 public class PasajeroFrecuenteDAOImpSQL implements PasajeroFrecuenteDAO {
 	
 	private Connection cn;
-	final String INSERT = "INSERT INTO pasajero_frecuente (alianza, numero, categoria, id_cliente, id_aerolinea) VALUES(?,?,?,?,?)";
-	final String UPDATE = "UPDATE pasajero_frecuente SET alianza=?, numero=?, categoria=? WHERE id_pasajero_frecuente=?";
+	final String INSERT = "INSERT INTO pasajero_frecuente (alianza, categoria, id_cliente, id_aerolinea) VALUES(?,?,?,?,?)";
+	final String UPDATE = "UPDATE pasajero_frecuente SET alianza=?, categoria=? WHERE id_pasajero_frecuente=?";
 	final String DELETE = "DELETE FROM pasajero_frecuente WHERE id_pasajero_frecuente=?";
-	final String GETALL = "SELECT id_pasajero_frecuente, alianza, numero, categoria, id_cliente, id_aerolinea FROM pasajero_frecuente";
-	final String GETONE = "SELECT id_pasajero_frecuente, alianza, numero, categoria, id_cliente, id_aerolinea FROM pasajero_frecuente WHERE id_pasajero_frecuente=?";
+	final String GETALL = "SELECT id_pasajero_frecuente, alianza, categoria, id_cliente, id_aerolinea FROM pasajero_frecuente";
+	final String GETONE = "SELECT id_pasajero_frecuente, alianza, categoria, id_cliente, id_aerolinea FROM pasajero_frecuente WHERE id_pasajero_frecuente=?";
 
 	@Override
-	public void addPasajeroFrecuente(Clientes cliente, Connection cn) throws SQLException, DAOException {
+	public boolean addPasajeroFrecuente(Clientes cliente, Connection cn) throws SQLException, DAOException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		cn.setAutoCommit(false);
@@ -31,10 +31,9 @@ public class PasajeroFrecuenteDAOImpSQL implements PasajeroFrecuenteDAO {
 		try { 
 			ps= cn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, cliente.getPasajerofrecuente().getAlianza());
-			ps.setString(2, cliente.getPasajerofrecuente().getNumero());
-			ps.setString(3, cliente.getPasajerofrecuente().getCategoria());
-			ps.setLong(4, cliente.getIdCliente());
-			ps.setLong(5, cliente.getPasajerofrecuente().getAerolinea().getIdAerolinea());
+			ps.setString(2, cliente.getPasajerofrecuente().getCategoria());
+			ps.setLong(3, cliente.getIdCliente());
+			ps.setLong(4, cliente.getPasajerofrecuente().getAerolinea().getIdAerolinea());
 			ps.executeUpdate();
 		    rs= ps.getGeneratedKeys();
 		    
@@ -62,6 +61,7 @@ public class PasajeroFrecuenteDAOImpSQL implements PasajeroFrecuenteDAO {
 				}
 			}
 		}
+		return true;
 	}
 
 	@Override
@@ -72,8 +72,7 @@ public class PasajeroFrecuenteDAOImpSQL implements PasajeroFrecuenteDAO {
 
 			ps = cn.prepareStatement(UPDATE);
 			ps.setString(1, cliente.getPasajerofrecuente().getAlianza());
-			ps.setString(2, cliente.getPasajerofrecuente().getNumero());
-			ps.setString(3, cliente.getPasajerofrecuente().getCategoria());
+			ps.setString(2, cliente.getPasajerofrecuente().getCategoria());
 			ps.executeUpdate(); 
 			
 		} catch (SQLException e) {
@@ -91,7 +90,7 @@ public class PasajeroFrecuenteDAOImpSQL implements PasajeroFrecuenteDAO {
 	}
 
 	@Override
-	public void deletePasajeroFrecuente(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean deletePasajeroFrecuente(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		cn.setAutoCommit(false);
 		
@@ -113,14 +112,14 @@ public class PasajeroFrecuenteDAOImpSQL implements PasajeroFrecuenteDAO {
 				}
 			}
 		}
+		return true;
 	}
 
 	private PasajerosFrecuentes Convertir(ResultSet rs) throws SQLException {
-    	String numero  = rs.getString("numero");
     	String categoria = rs.getString("categoria");
     	String alianza = rs.getString("alianza");
     	
-    	PasajerosFrecuentes pasajero = new PasajerosFrecuentes(numero, categoria, alianza, null, null);
+    	PasajerosFrecuentes pasajero = new PasajerosFrecuentes(categoria, alianza, null, null);
     	pasajero.setIdPasajeroFrecuente(rs.getLong("id_pasajero_frecuente"));
     	return pasajero;
     	

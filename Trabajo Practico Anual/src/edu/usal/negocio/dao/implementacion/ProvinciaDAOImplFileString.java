@@ -33,7 +33,8 @@ public class ProvinciaDAOImplFileString implements ProvinciaDAO {
 	}
 
 	@Override
-	public void addProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean addProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
@@ -45,7 +46,8 @@ public class ProvinciaDAOImplFileString implements ProvinciaDAO {
 	}
 
 	@Override
-	public void deleteProvincia(Clientes cliente, Connection cn) throws DAOException {
+	public boolean deleteProvincia(Clientes cliente, Connection cn) throws DAOException {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}

@@ -24,7 +24,7 @@ public class AerolineaDAOImpSQL implements AerolineaDAO{
 	
 	
 	@Override
-	public void addAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException {
+	public boolean addAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		cn.setAutoCommit(false);
@@ -60,6 +60,7 @@ public class AerolineaDAOImpSQL implements AerolineaDAO{
 				}
 			}
 		}
+		return true;
 	}
 
 	@Override
@@ -88,7 +89,7 @@ public class AerolineaDAOImpSQL implements AerolineaDAO{
 	}
 
 	@Override
-	public void deleteAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException {
+	public boolean deleteAerolinea(Aerolineas aerolinea, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		cn.setAutoCommit(false);
 		
@@ -110,6 +111,7 @@ public class AerolineaDAOImpSQL implements AerolineaDAO{
 				}
 			}
 		}
+		return true;
 	}
 
 	private Aerolineas Convertir(ResultSet rs) throws SQLException {

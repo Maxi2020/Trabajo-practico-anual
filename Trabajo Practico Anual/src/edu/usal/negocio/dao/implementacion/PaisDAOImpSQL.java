@@ -29,7 +29,7 @@ public class PaisDAOImpSQL implements PaisDAO {
 	}
 
 	@Override
-	public void addPais(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean addPais(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		cn.setAutoCommit(false);
@@ -64,6 +64,7 @@ public class PaisDAOImpSQL implements PaisDAO {
 				}
 			}
 		}
+		return true;
 	}
 
 	@Override
@@ -92,7 +93,7 @@ public class PaisDAOImpSQL implements PaisDAO {
 	}
 
 	@Override
-	public void deletePais(Clientes cliente, Connection cn) throws DAOException, SQLException {
+	public boolean deletePais(Clientes cliente, Connection cn) throws DAOException, SQLException {
 		PreparedStatement ps = null;
 		cn.setAutoCommit(false);
 		
@@ -114,6 +115,7 @@ public class PaisDAOImpSQL implements PaisDAO {
 				}
 			}
 		}
+		return true;
 	}
 
 	private Paises Convertir(ResultSet rs) throws SQLException {

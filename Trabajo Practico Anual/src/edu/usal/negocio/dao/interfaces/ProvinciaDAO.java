@@ -13,9 +13,9 @@ import edu.usal.util.DAOException;
 
 public interface ProvinciaDAO {
 	public Hashtable<Integer,String> leerProvincias()throws FileNotFoundException, IOException;
-	public void addProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException;
+	public boolean addProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException;
 	public void updateProvincia(Clientes cliente) throws DAOException;
-	public void deleteProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException;
+	public boolean deleteProvincia(Clientes cliente, Connection cn) throws DAOException, SQLException;
 	public Provincias queryProvincia(int Id) throws  DAOException;
 	public List<Provincias> getAllProvincias() throws DAOException;
 }
